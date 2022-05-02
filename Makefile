@@ -5,7 +5,7 @@ install: zsh vim tmux git
 zsh:
 	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
-vim:
+vim: exa
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
@@ -14,3 +14,10 @@ tmux:
 git:
 	ln -s $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
 	ln -s $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
+
+rust-toolchain:
+	cargo -V || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	cargo -V || . $${HOME}/.cargo/env
+
+exa: rust-toolchain
+	exa --version || cargo install exa
