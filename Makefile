@@ -1,6 +1,9 @@
 DOTFILES=$(shell pwd)
 
-install: vim tmux
+install: zsh vim tmux
+
+zsh:
+	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
 vim:
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
