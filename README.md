@@ -13,4 +13,10 @@ changes.
 
 [Antigen][antigen] is used as a zsh plugin manager.
 
+### vim
+
+[vim-plug][vim-plug] is used to manage vim plugins. After installation, run
+`:PlugInstall` to install the configured vim plugins.
+
 [antigen]: https://github.com/zsh-users/antigen
+[vim-plug]: https://github.com/junegunn/vim-plug
