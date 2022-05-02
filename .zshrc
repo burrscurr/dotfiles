@@ -22,6 +22,9 @@ antigen apply
 LANG=en_US.UTF-8
 LC_MESSAGES=en_US.UTF-8
 
+# Use vim as editor.
+export VISUAL=vim
+
 alias el="exa -l"
 alias ela="exa -al"
 
