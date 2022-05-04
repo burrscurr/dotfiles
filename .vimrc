@@ -6,12 +6,6 @@ Plug 'rust-lang/rust.vim'
 " python code formatting
 " https://black.readthedocs.io/en/stable/integrations/editors.html#vim
 Plug 'psf/black', { 'branch': 'stable' }
-
-" fzf for vim
-Plug 'junegunn/fzf.vim'
-
-" file explorer
-Plug 'preservim/nerdtree'
 call plug#end()
 
 syntax on
@@ -66,9 +60,3 @@ augroup black_on_save
     autocmd!
     autocmd BufWritePre *.py Black
 augroup end
-
-" NERDTree settings
-map <leader>n :NERDTreeFocus<CR>
-map <C-n> :NERDTree<CR>
-map <C-t> :NERDTreeToggle<CR>
-map <C-f> :NERDTreeFind<CR>
