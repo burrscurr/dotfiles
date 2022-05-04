@@ -1,13 +1,14 @@
 # dotfiles
 
+personal dotfiles and shell setup
+
 ## Installation
 
-Run `make` to install all dotfiles. There are several targets available for more
-selective installation.
+Run `make` to install all dotfiles. It is recommended to inspect the `Makefile`
+and apply targets selectively.
 
-The installed files are symlinked to their respective version in this
-repository. This setup makes it easy to compare and exchange upstream and local
-changes.
+Dotfiles typically are symlinked to this repository, which makes it easy to
+compare/exchange upstream and local changes.
 
 ### zsh
 
@@ -15,8 +16,6 @@ changes.
 
 ### vim
 
-[vim-plug][vim-plug] is used to manage vim plugins. After installation, run
-`:PlugInstall` to install the configured vim plugins.
+Requires version 8+ (built-in packages) with `+python3` (check `vim --version` output).
 
 [antigen]: https://github.com/zsh-users/antigen
-[vim-plug]: https://github.com/junegunn/vim-plug

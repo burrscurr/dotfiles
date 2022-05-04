@@ -1,13 +1,3 @@
-call plug#begin('~/.vim/plugged')
-" rust syntax highlighting, formatting etc.
-" https://github.com/rust-lang/rust.vim#installation
-Plug 'rust-lang/rust.vim'
-
-" python code formatting
-" https://black.readthedocs.io/en/stable/integrations/editors.html#vim
-Plug 'psf/black', { 'branch': 'stable' }
-call plug#end()
-
 syntax on
 " Don't auto-create indents
 filetype plugin indent on
