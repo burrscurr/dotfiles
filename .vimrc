@@ -45,8 +45,9 @@ autocmd Filetype conf setlocal ts=2 sts=2 sw=2 expandtab
 " Automatically rustfmt rust code on save
 let g:rustfmt_autosave = 1
 
-" Run black automatically for python files.
-augroup black_on_save
+" Format python code with isort and black.
+augroup format_python_code
     autocmd!
+    autocmd BufWritePre *.py Isort
     autocmd BufWritePre *.py Black
 augroup end

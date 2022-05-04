@@ -16,7 +16,13 @@ rustvim: rust-toolchain
 black:
 	git clone --branch stable https://github.com/psf/black ~/.vim/pack/plugins/start/black
 
-vim: exa rustvim black
+# Sort python imports.
+# The selected plugin installs isort automatically and calls isort directly
+# (requires +python3).
+isort:
+	git clone https://github.com/davidszotten/isort-vim-2 ~/.vim/pack/plugins/start/isort-vim-2
+
+vim: exa rustvim black isort
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
