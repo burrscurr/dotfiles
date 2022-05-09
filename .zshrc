@@ -1,3 +1,6 @@
+# ZSH completions
+fpath+=~/.zfunc
+
 source $HOME/.antigen.zsh
 
 # Load the oh-my-zsh's library.

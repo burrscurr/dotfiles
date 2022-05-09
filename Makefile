@@ -1,9 +1,11 @@
 DOTFILES=$(shell pwd)
+COMPLETIONS_DIR=$${HOME}/.zfunc
 VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
 
 install: zsh vim tmux git
 
 zsh:
+	mkdir $(COMPLETIONS_DIR)
 	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
 # Rust syntax highlighting and code formatting.
@@ -36,6 +38,8 @@ git:
 rust-toolchain:
 	cargo -V || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 	cargo -V || . $${HOME}/.cargo/env
+	rustup completions zsh rustup > $(COMPLETIONS_DIR)/_rustup
+	rustup completions zsh cargo > $(COMPLETIONS_DIR)/_cargo
 
 exa: rust-toolchain
 	exa --version || cargo install exa
