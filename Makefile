@@ -13,6 +13,10 @@ zsh:
 rustvim: rust-toolchain
 	git clone https://github.com/rust-lang/rust.vim $(VIM_PLUGIN_DIR)/rust.vim
 
+# Python syntax highlighting (including f-strings)
+py-syntax:
+	git clone https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
+
 # Python code formatter.
 # https://black.readthedocs.io/en/stable/integrations/editors.html#vim
 # Requires +python3; installs black in virtual environment on first use.
@@ -25,7 +29,7 @@ black:
 isort:
 	git clone https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
 
-vim: exa rustvim black isort
+vim: exa rustvim py-syntax black isort
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:

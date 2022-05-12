@@ -51,3 +51,6 @@ augroup format_python_code
     autocmd BufWritePre *.py Isort
     autocmd BufWritePre *.py Black
 augroup end
+
+" Activate syntax highlighting from https://github.com/vim-python/python-syntax
+let g:python_highlight_all = 1
