@@ -10,12 +10,6 @@ and apply targets selectively.
 Dotfiles typically are symlinked to this repository, which makes it easy to
 compare/exchange upstream and local changes.
 
-### zsh
-
-[Antigen][antigen] is used as a zsh plugin manager.
-
 ### vim
 
 Requires version 8+ (built-in packages) with `+python3` (check `vim --version` output).
-
-[antigen]: https://github.com/zsh-users/antigen
