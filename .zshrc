@@ -1,5 +1,5 @@
 # ZSH completions
-fpath+=~/.zfunc
+fpath=($HOME/.zsh/completions $fpath)
 
 # Agnoster theme
 source $HOME/.zsh/themes/agnoster.zsh
