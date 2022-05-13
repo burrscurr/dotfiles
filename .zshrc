@@ -1,5 +1,7 @@
 # ZSH completions
-fpath=($HOME/.zsh/completions $fpath)
+fpath+=(~/.zsh/completions)
+autoload -U compinit
+compinit
 
 # Agnoster theme
 source $HOME/.zsh/themes/agnoster.zsh
