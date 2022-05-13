@@ -1,11 +1,14 @@
 DOTFILES=$(shell pwd)
 COMPLETIONS_DIR=$${HOME}/.zfunc
+ZSH_THEMES=~/.zsh/themes
 VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
 
 install: zsh vim tmux git
 
 zsh:
 	mkdir $(COMPLETIONS_DIR)
+	mkdir -p $(ZSH_THEMES)
+	ln -s $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
 # Rust syntax highlighting and code formatting.

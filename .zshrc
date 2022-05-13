@@ -1,16 +1,8 @@
 # ZSH completions
 fpath+=~/.zfunc
 
-source $HOME/.antigen.zsh
-
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
-
-# Load the theme.
-antigen theme agnoster 
-
-# Tell Antigen that you're done.
-antigen apply
+# Agnoster theme
+source $HOME/.zsh/themes/agnoster.zsh
 
 # language settings
 LANG=en_US.UTF-8
