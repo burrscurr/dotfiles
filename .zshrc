@@ -14,9 +14,7 @@ export VISUAL=vim
 alias el="exa -l"
 alias ela="exa -al"
 
-# Often gs is aliased to "ghostscript"
+alias ga="git add"
 alias gs="git status"
-# default: git commit -v
 alias gc="git commit"
-# default: git pull
 alias gl="git log"
