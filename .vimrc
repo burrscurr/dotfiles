@@ -2,8 +2,6 @@ syntax on
 " Don't auto-create indents
 filetype plugin indent on
 
-" Cursor position marker in bottom bar
-set ruler
 
 " Backspace not limited to just inserted characters:
 " (https://unix.stackexchange.com/a/307974)
@@ -54,3 +52,7 @@ augroup end
 
 " Activate syntax highlighting from https://github.com/vim-python/python-syntax
 let g:python_highlight_all = 1
+
+" Status line plugin config
+set laststatus=2
+set noshowmode

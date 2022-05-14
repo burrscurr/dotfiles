@@ -6,6 +6,8 @@ compinit
 # Agnoster theme
 source $HOME/.zsh/themes/agnoster.zsh
 
+export TERM=xterm-256color
+
 HISTFILE=~/.zsh/history
 HISTSIZE=10000
 SAVEHIST=10000

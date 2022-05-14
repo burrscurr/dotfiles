@@ -11,6 +11,9 @@ zsh:
 	ln -s $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
+lightline:
+	git clone https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
+
 # Rust syntax highlighting and code formatting.
 # https://github.com/rust-lang/rust.vim#installation
 rustvim: rust-toolchain
