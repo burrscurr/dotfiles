@@ -13,6 +13,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
+# Use vim keybindings
+bindkey -v
+
 # Prefix-based history with arrow keys
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
