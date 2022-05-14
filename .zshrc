@@ -6,6 +6,11 @@ compinit
 # Agnoster theme
 source $HOME/.zsh/themes/agnoster.zsh
 
+HISTFILE=~/.zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 # Prefix-based history with arrow keys
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
