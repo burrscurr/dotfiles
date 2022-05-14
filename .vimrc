@@ -1,7 +1,7 @@
+" Activate syntax highlighting
 syntax on
 " Don't auto-create indents
 filetype plugin indent on
-
 
 " Backspace not limited to just inserted characters:
 " (https://unix.stackexchange.com/a/307974)
@@ -17,27 +17,21 @@ set autowrite
 set encoding=utf-8      "display file as utf-8 in terminal
 set fileencoding=utf-8  "write file to disk as utf-8
 
+" Improve visibility of hard tabs, non-breaking spaces and trailing spaces
+set list listchars=tab:→·,nbsp:␣,trail:•
 
 autocmd Filetype gitcommit setlocal tw=70
-												
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
-
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype css setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype svg setlocal ts=2 sts=2 sw=2 expandtab
-
-autocmd Filetype sql setlocal ts=4 sw=4 sts=4 expandtab
-
 autocmd Filetype make setlocal noexpandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
-
+autocmd Filetype bib setlocal ts=2 sw=2 sts=2 expandtab
+autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 expandtab tw=80
 let g:tex_flavor = 'latex'
 autocmd Filetype tex setlocal ts=2 sw=2 sts=2 expandtab tw=80
-autocmd Filetype bib setlocal ts=2 sw=2 sts=2 expandtab
-
-autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 expandtab tw=80
-
 autocmd Filetype conf setlocal ts=2 sts=2 sw=2 expandtab
 
 " Automatically rustfmt rust code on save
