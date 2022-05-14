@@ -3,7 +3,7 @@ ZSH_COMPLETIONS=~/.zsh/completions
 ZSH_THEMES=~/.zsh/themes
 VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
 
-install: zsh vim tmux git
+install: zsh vim tmux git exa
 
 zsh:
 	mkdir -p $(ZSH_COMPLETIONS)
@@ -11,8 +11,13 @@ zsh:
 	ln -s $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
+# Nice vim status bar
 lightline:
 	git clone https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
+
+# Tab completions
+supertab:
+	git clone --depth=1 https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab
 
 # Rust syntax highlighting and code formatting.
 # https://github.com/rust-lang/rust.vim#installation
@@ -35,8 +40,13 @@ black:
 isort:
 	git clone https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
 
-vim: exa rustvim py-syntax black isort
+pgsql:
+	git clone https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
+
+vim: vim-plugins
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
+
+vim-plugins: rustvim py-syntax black isort lightline supertab pgsql
 
 tmux:
 	ln -s $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
