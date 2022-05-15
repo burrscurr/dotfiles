@@ -3,6 +3,9 @@ fpath+=(~/.zsh/completions)
 autoload -U compinit
 compinit
 
+# Why does this shit even exist?
+unsetopt BEEP
+
 # Agnoster theme
 source $HOME/.zsh/themes/agnoster.zsh
 
