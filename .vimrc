@@ -18,7 +18,7 @@ set encoding=utf-8      "display file as utf-8 in terminal
 set fileencoding=utf-8  "write file to disk as utf-8
 
 " Improve visibility of hard tabs, non-breaking spaces and trailing spaces
-set list listchars=tab:→·,nbsp:␣,trail:•
+set list listchars=tab:→·,nbsp:␣,trail:·
 
 autocmd Filetype gitcommit setlocal tw=70
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
