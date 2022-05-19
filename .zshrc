@@ -22,6 +22,9 @@ bindkey -v
 # Prefix-based history with arrow keys
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
+# Try the following on debian-based machines:
+bindkey "$key[Up]" history-search-backward
+bindkey "$key[Down]" history-search-forward
 
 # language settings
 LANG=en_US.UTF-8
