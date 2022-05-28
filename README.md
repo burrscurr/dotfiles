@@ -23,9 +23,10 @@ manually:
 ```
 # Ubuntu
 sudo apt install exa bat
+cargo install git-delta
 
 # macos
-brew install exa bat
+brew install exa bat git-delta
 ```
 
 ### vim
