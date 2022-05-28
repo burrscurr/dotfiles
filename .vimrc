@@ -13,6 +13,10 @@ set shiftwidth=4
 set expandtab
 set autowrite
 
+" Jump to search result and highlight results.
+set incsearch
+set hlsearch
+
 " unicode options
 set encoding=utf-8      "display file as utf-8 in terminal
 set fileencoding=utf-8  "write file to disk as utf-8
