@@ -35,6 +35,7 @@ export VISUAL=vim
 
 alias el="exa -l"
 alias ela="exa -al"
+alias tree="exa -l --tree --git-ignore"
 
 alias cat="bat --theme=base16 --style=plain"
 
