@@ -36,7 +36,7 @@ export VISUAL=vim
 alias el="exa -l"
 alias ela="exa -al"
 
-alias cat="bat --theme=base16"
+alias cat="bat --theme=base16 --style=plain"
 
 alias ga="git add"
 alias gs="git status"
