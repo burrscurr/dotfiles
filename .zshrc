@@ -35,8 +35,9 @@ LC_MESSAGES=en_US.UTF-8
 # Use vim as editor.
 export VISUAL=vim
 
-alias el="exa -l"
-alias ela="exa -al"
+alias ls="exa"
+alias ll="exa -l"
+alias la="exa -al"
 alias tree="exa -l --tree --git-ignore"
 
 alias cat="bat --theme=base16 --style=plain"
