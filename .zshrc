@@ -49,3 +49,6 @@ alias ga="git add"
 alias gs="git status"
 alias gc="git commit"
 alias gl="git log"
+
+alias -g ...="../.."
+alias -g ....="../../.."
