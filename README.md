@@ -22,11 +22,11 @@ manually:
 
 ```
 # Ubuntu
-sudo apt install exa bat
+sudo apt install exa bat fzf fd-find
 cargo install git-delta
 
 # macos
-brew install exa bat git-delta
+brew install exa bat git-delta fzf fd
 ```
 
 ### vim

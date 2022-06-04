@@ -35,6 +35,9 @@ LC_MESSAGES=en_US.UTF-8
 # Use vim as editor.
 export VISUAL=vim
 
+# fzf settings
+export FZF_DEFAULT_COMMAND='fd --hidden'
+
 alias ls="exa"
 alias ll="exa -l"
 alias la="exa -al"

@@ -48,6 +48,9 @@ augroup format_python_code
     autocmd BufWritePre *.py Black
 augroup end
 
+" Setup fzf
+set rtp+=/opt/homebrew/opt/fzf
+
 " Activate syntax highlighting from https://github.com/vim-python/python-syntax
 let g:python_highlight_all = 1
 
