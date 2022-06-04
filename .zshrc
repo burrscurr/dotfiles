@@ -2,8 +2,8 @@
 fpath+=(~/.zsh/completions)
 autoload -U compinit
 compinit
-# Try to complete matches by prefix, then substring match.
-zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+# Try to complete matches by prefix, then case-insensitive matches, then substring match.
+zstyle ':completion:*' matcher-list 'r:|=*' 'm:{a-zA-Z}={A-Za-z}' 'l:|=* r:|=*'
 
 # Why does this shit even exist?
 unsetopt BEEP
