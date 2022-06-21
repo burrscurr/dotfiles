@@ -29,6 +29,7 @@ autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype css setlocal ts=2 sw=2 sts=2 expandtab
+autocmd Filetype scss setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype svg setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype make setlocal noexpandtab
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
