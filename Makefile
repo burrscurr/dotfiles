@@ -43,10 +43,16 @@ isort:
 pgsql:
 	git clone https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
 
+fluent:
+	git clone https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
+
+vim-logrotate:
+	git clone https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
+
 vim: vim-plugins
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
-vim-plugins: rustvim py-syntax black isort lightline supertab pgsql
+vim-plugins: rustvim py-syntax black isort lightline supertab pgsql fluent vim-logrotate
 
 tmux:
 	ln -s $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
