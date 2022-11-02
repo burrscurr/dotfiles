@@ -51,6 +51,7 @@ augroup format_python_code
     autocmd!
     autocmd BufWritePre *.py Isort
     autocmd BufWritePre *.py Black
+    autocmd BufWritePost *.py call flake8#Flake8()
 augroup end
 
 " Setup fzf
@@ -58,6 +59,10 @@ set rtp+=/opt/homebrew/opt/fzf
 
 " Activate syntax highlighting from https://github.com/vim-python/python-syntax
 let g:python_highlight_all = 1
+
+" vim-flake8
+let g:flake8_show_quickfix=0  " use :copen and :close to open/close the error message window
+let g:flake8_show_in_file=1
 
 " Status line plugin config
 set laststatus=2
