@@ -33,7 +33,7 @@ LC_MESSAGES=en_US.UTF-8
 export VISUAL=vim
 
 # fzf settings
-export FZF_DEFAULT_COMMAND='fd --hidden --exclude .git/'
+export FZF_DEFAULT_COMMAND='fd --hidden --exclude .git'
 
 alias ls="exa"
 alias ll="exa -l"
