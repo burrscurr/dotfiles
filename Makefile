@@ -34,6 +34,11 @@ py-syntax:
 black:
 	git clone --branch stable https://github.com/psf/black $(VIM_PLUGIN_DIR)/black
 
+# Static syntax and style checker for python source code.
+# flake8 mut be in PATH.
+flake8:
+	git clone https://github.com/nvie/vim-flake8 $(VIM_PLUGIN_DIR)/vim-flake8
+
 # Sort python imports.
 # The selected plugin installs isort automatically and calls isort directly
 # (requires +python3).
@@ -52,7 +57,8 @@ vim-logrotate:
 vim: vim-plugins
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
-vim-plugins: rustvim py-syntax black isort lightline supertab pgsql fluent vim-logrotate
+vim-plugins: rustvim vim-py-plugins lightline supertab pgsql fluent vim-logrotate
+vim-py-plugins: py-syntax black flake8 isort
 
 tmux:
 	ln -s $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
