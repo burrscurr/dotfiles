@@ -54,10 +54,13 @@ fluent:
 vim-logrotate:
 	git clone https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
 
+java-syntax:
+	git clone https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
+
 vim: vim-plugins
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
-vim-plugins: rustvim vim-py-plugins lightline supertab pgsql fluent vim-logrotate
+vim-plugins: rustvim vim-py-plugins lightline supertab pgsql fluent vim-logrotate java-syntax
 vim-py-plugins: py-syntax black flake8 isort
 
 tmux:

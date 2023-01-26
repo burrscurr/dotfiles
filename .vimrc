@@ -64,6 +64,9 @@ let g:python_highlight_all = 1
 let g:flake8_show_quickfix=0  " use :copen and :close to open/close the error message window
 let g:flake8_show_in_file=1
 
+" java-syntax.vim
+highlight link javaIdentifier NONE
+
 " Status line plugin config
 set laststatus=2
 set noshowmode
