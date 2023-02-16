@@ -11,22 +11,10 @@ zsh:
 	ln -s $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
-# Nice vim status bar
-lightline:
-	git clone https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
-
-# Tab completions
-supertab:
-	git clone --depth=1 https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab
-
 # Rust syntax highlighting and code formatting.
 # https://github.com/rust-lang/rust.vim#installation
 rustvim: rust-toolchain
 	git clone https://github.com/rust-lang/rust.vim $(VIM_PLUGIN_DIR)/rust.vim
-
-# Python syntax highlighting (including f-strings)
-py-syntax:
-	git clone https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
 
 # Python code formatter.
 # https://black.readthedocs.io/en/stable/integrations/editors.html#vim
@@ -45,23 +33,24 @@ flake8:
 isort:
 	git clone https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
 
-pgsql:
+# Vim plugins without external dependencies
+vim-simple-plugins:
+	git clone https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
+	git clone --depth=1 https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab
+	git clone https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
+	git clone https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
+	git clone https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
+	git clone https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
 	git clone https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
 
-fluent:
-	git clone https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
+# Vim plugins with external dependencies.
+vim-dep-plugins: rustvim py-syntax black flake8 isort
 
-vim-logrotate:
-	git clone https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
-
-java-syntax:
-	git clone https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
-
-vim: vim-plugins
+vimrc:
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
-vim-plugins: rustvim vim-py-plugins lightline supertab pgsql fluent vim-logrotate java-syntax
-vim-py-plugins: py-syntax black flake8 isort
+vim: vimrc vim-dep-plugins vim-simple-plugins
+	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
 	ln -s $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
