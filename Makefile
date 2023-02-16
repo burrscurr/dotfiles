@@ -42,6 +42,7 @@ vim-simple-plugins:
 	git clone https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
 	git clone https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
 	git clone https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
+	git clone https://github.com/burrscurr/vim-pgpass.git $(VIM_PLUGIN_DIR)/vim-pgpass
 
 # Vim plugins with external dependencies.
 vim-dep-plugins: rustvim py-syntax black flake8 isort
