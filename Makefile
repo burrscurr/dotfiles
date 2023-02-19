@@ -5,7 +5,7 @@ VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
 
 install: zsh vim tmux git
 
-zsh:
+zsh: bat
 	mkdir -p $(ZSH_COMPLETIONS)
 	mkdir -p $(ZSH_THEMES)
 	ln -s $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
@@ -69,3 +69,6 @@ rust-toolchain:
 	cargo -V || . $${HOME}/.cargo/env
 	rustup completions zsh rustup > $(ZSH_COMPLETIONS)/_rustup
 	rustup completions zsh cargo > $(ZSH_COMPLETIONS)/_cargo
+
+bat: rust-toolchain
+	cargo install --locked bat
