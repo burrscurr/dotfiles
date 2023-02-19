@@ -8,60 +8,60 @@ install: zsh vim tmux git
 zsh: bat exa fd delta
 	mkdir -p $(ZSH_COMPLETIONS)
 	mkdir -p $(ZSH_THEMES)
-	ln -s $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
-	ln -s $(DOTFILES)/.zshrc $${HOME}/.zshrc
+	ln -sf $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
+	ln -sf $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
 # Rust syntax highlighting and code formatting.
 # https://github.com/rust-lang/rust.vim#installation
 rustvim: rust-toolchain
-	git clone https://github.com/rust-lang/rust.vim $(VIM_PLUGIN_DIR)/rust.vim
+	./clone-or-pull https://github.com/rust-lang/rust.vim $(VIM_PLUGIN_DIR)/rust.vim
 
 # Python code formatter.
 # https://black.readthedocs.io/en/stable/integrations/editors.html#vim
 # Requires +python3; installs black in virtual environment on first use.
 black:
-	git clone --branch stable https://github.com/psf/black $(VIM_PLUGIN_DIR)/black
+	./clone-or-pull https://github.com/psf/black $(VIM_PLUGIN_DIR)/black
 
 # Static syntax and style checker for python source code.
 # flake8 mut be in PATH.
 flake8:
-	git clone https://github.com/nvie/vim-flake8 $(VIM_PLUGIN_DIR)/vim-flake8
+	./clone-or-pull https://github.com/nvie/vim-flake8 $(VIM_PLUGIN_DIR)/vim-flake8
 
 # Sort python imports.
 # The selected plugin installs isort automatically and calls isort directly
 # (requires +python3).
 isort:
-	git clone https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
+	./clone-or-pull https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
 
 # Vim plugins without external dependencies
 vim-simple-plugins:
-	git clone https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
-	git clone --depth=1 https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab
-	git clone https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
-	git clone https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
-	git clone https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
-	git clone https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
-	git clone https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
-	git clone https://github.com/burrscurr/vim-pgpass.git $(VIM_PLUGIN_DIR)/vim-pgpass
+	./clone-or-pull https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
+	./clone-or-pull https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab --depth=1
+	./clone-or-pull https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
+	./clone-or-pull https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
+	./clone-or-pull https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
+	./clone-or-pull https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
+	./clone-or-pull https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
+	./clone-or-pull https://github.com/burrscurr/vim-pgpass.git $(VIM_PLUGIN_DIR)/vim-pgpass
 
 # Vim plugins with external dependencies.
-vim-dep-plugins: rustvim py-syntax black flake8 isort
+vim-dep-plugins: rustvim black flake8 isort
 
 vimrc:
-	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
+	ln -sf $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 vim: vimrc fzf vim-dep-plugins vim-simple-plugins
-	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
+	ln -sf $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
-	ln -s $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
+	ln -sf $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
 
 git:
-	ln -s $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
-	ln -s $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
+	ln -sf $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
+	ln -sf $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
 
 fzf:
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	./clone-or-pull https://github.com/junegunn/fzf.git ~/.fzf --depth=1
 	~/.fzf/install --no-completion --no-update-rc --key-bindings --bin
 
 rust-toolchain:
