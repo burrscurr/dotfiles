@@ -29,6 +29,7 @@ isort: vim-python3
 vim-general:
 	./clone-or-pull https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
 	./clone-or-pull https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab --depth=1
+	./clone-or-pull https://github.com/terryma/vim-smooth-scroll $(VIM_PLUGIN_DIR)/vim-smooth-scroll
 vim-highlight:
 	./clone-or-pull https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
 	./clone-or-pull https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate

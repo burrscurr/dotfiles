@@ -21,6 +21,12 @@ highlight LineNr ctermfg=grey ctermbg=black
 set incsearch
 set hlsearch
 
+" Smooth scrolling from https://github.com/terryma/vim-smooth-scroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 4, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 4, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
+
 " unicode options
 set encoding=utf-8      "display file as utf-8 in terminal
 set fileencoding=utf-8  "write file to disk as utf-8
