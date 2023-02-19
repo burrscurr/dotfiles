@@ -11,32 +11,25 @@ zsh: bat exa fd delta
 	ln -sf $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	ln -sf $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
-# Rust syntax highlighting and code formatting.
-# https://github.com/rust-lang/rust.vim#installation
-rustvim: rust-toolchain
+vim-python3:
+	vim --version | grep "+python3"
+
+vim-rs-formatting: rust-toolchain
 	./clone-or-pull https://github.com/rust-lang/rust.vim $(VIM_PLUGIN_DIR)/rust.vim
 
-# Python code formatter.
-# https://black.readthedocs.io/en/stable/integrations/editors.html#vim
-# Requires +python3; installs black in virtual environment on first use.
-black:
+vim-py-formatting: black flake8 isort
+black: vim-python3
 	./clone-or-pull https://github.com/psf/black $(VIM_PLUGIN_DIR)/black
-
-# Static syntax and style checker for python source code.
-# flake8 mut be in PATH.
 flake8:
 	./clone-or-pull https://github.com/nvie/vim-flake8 $(VIM_PLUGIN_DIR)/vim-flake8
-
-# Sort python imports.
-# The selected plugin installs isort automatically and calls isort directly
-# (requires +python3).
-isort:
+	flake8 --version || python3 -m pip install --user flake8
+isort: vim-python3
 	./clone-or-pull https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
 
-# Vim plugins without external dependencies
-vim-simple-plugins:
+vim-general:
 	./clone-or-pull https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
 	./clone-or-pull https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab --depth=1
+vim-highlight:
 	./clone-or-pull https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
 	./clone-or-pull https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
 	./clone-or-pull https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
@@ -44,13 +37,7 @@ vim-simple-plugins:
 	./clone-or-pull https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
 	./clone-or-pull https://github.com/burrscurr/vim-pgpass.git $(VIM_PLUGIN_DIR)/vim-pgpass
 
-# Vim plugins with external dependencies.
-vim-dep-plugins: rustvim black flake8 isort
-
-vimrc:
-	ln -sf $(DOTFILES)/.vimrc $${HOME}/.vimrc
-
-vim: vimrc fzf vim-dep-plugins vim-simple-plugins
+vim: fzf vim-general vim-highlight vim-py-formatting vim-rs-formatting
 	ln -sf $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
