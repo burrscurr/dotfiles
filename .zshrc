@@ -43,7 +43,7 @@ alias ll="exa -l"
 alias la="exa -al"
 alias tree="exa -l --tree --git-ignore"
 
-alias cat="bat --theme=base16 --style=plain"
+alias cat="bat --theme=base16"
 
 alias ga="git add"
 alias gs="git status"
