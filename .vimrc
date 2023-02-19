@@ -43,6 +43,9 @@ let g:tex_flavor = 'latex'
 autocmd Filetype tex setlocal ts=2 sw=2 sts=2 expandtab tw=80
 autocmd Filetype conf setlocal ts=2 sts=2 sw=2 expandtab
 
+" pgsql.vim
+let g:sql_type_default = 'pgsql'
+
 " Automatically rustfmt rust code on save
 let g:rustfmt_autosave = 1
 
