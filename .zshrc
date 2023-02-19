@@ -34,6 +34,9 @@ export VISUAL=vim
 
 # fzf settings
 export FZF_DEFAULT_COMMAND='fd --hidden --exclude .git'
+# Use Ctrl+T runs FZF, Ctrl+R for history search
+source "$HOME/.fzf/shell/key-bindings.zsh"
+export FZF_CTRL_R_OPTS='--no-sort --exact'
 
 alias ls="exa"
 alias ll="exa -l"

@@ -50,7 +50,7 @@ vim-dep-plugins: rustvim py-syntax black flake8 isort
 vimrc:
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
-vim: vimrc vim-dep-plugins vim-simple-plugins
+vim: vimrc fzf vim-dep-plugins vim-simple-plugins
 	ln -s $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
@@ -59,6 +59,10 @@ tmux:
 git:
 	ln -s $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
 	ln -s $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
+
+fzf:
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install --no-completion --no-update-rc --key-bindings --bin
 
 rust-toolchain:
 	cargo -V || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
