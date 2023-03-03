@@ -3,7 +3,7 @@ ZSH_COMPLETIONS=~/.zsh/completions
 ZSH_THEMES=~/.zsh/themes
 VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
 
-install: zsh vim tmux git
+install: zsh vim tmux git psqlrc
 
 zsh: bat exa fd delta
 	mkdir -p $(ZSH_COMPLETIONS)
@@ -47,6 +47,9 @@ tmux:
 git:
 	ln -sf $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
 	ln -sf $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
+
+psqlrc:
+	ln -sf $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
 
 fzf:
 	./clone-or-pull https://github.com/junegunn/fzf.git ~/.fzf --depth=1
