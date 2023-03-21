@@ -5,7 +5,7 @@ VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
 
 install: zsh vim tmux git psqlrc
 
-zsh: bat exa fd delta
+zsh: bat exa fd delta $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
 	mkdir -p $(ZSH_COMPLETIONS)
 	mkdir -p $(ZSH_THEMES)
 	ln -sf $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
@@ -56,17 +56,19 @@ fzf:
 	~/.fzf/install --no-completion --no-update-rc --key-bindings --bin
 
 rust-toolchain:
-	cargo -V || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	cargo -V || . $${HOME}/.cargo/env
+	cargo -V > /dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
+	cargo -V > /dev/null || . $${HOME}/.cargo/env
+$(ZSH_COMPLETIONS)/_rustup: rust-toolchain
 	rustup completions zsh rustup > $(ZSH_COMPLETIONS)/_rustup
+$(ZSH_COMPLETIONS)/_cargo: rust-toolchain
 	rustup completions zsh cargo > $(ZSH_COMPLETIONS)/_cargo
 
 # Various rust command line utilities
 bat: rust-toolchain
-	bat --version || ./install-rust-cli-tool.sh bat bat bat
+	bat --version > /dev/null || ./install-rust-cli-tool.sh bat bat bat
 exa: rust-toolchain
-	exa --version || ./install-rust-cli-tool.sh exa exa exa
+	exa --version > /dev/null || ./install-rust-cli-tool.sh exa exa exa
 fd: rust-toolchain
-	fd --version || ./install-rust-cli-tool.sh fd-find fd fd-find
+	fd --version > /dev/null || ./install-rust-cli-tool.sh fd-find fd fd-find
 delta: rust-toolchain
-	delta --version || ./install-rust-cli-tool.sh git-delta git-delta git-delta
+	delta --version > /dev/null || ./install-rust-cli-tool.sh git-delta git-delta git-delta
