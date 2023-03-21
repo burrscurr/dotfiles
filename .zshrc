@@ -21,7 +21,8 @@ setopt appendhistory
 # Use vim keybindings
 bindkey -v
 
-# Prefix-based history with arrow keys
+# Prefix-based history with arrow keys.
+# On debian, try ${key[Up]} and ${key[Down]} instead (see https://www.zsh.org/mla/users/2014/msg00567.html).
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
