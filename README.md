@@ -7,8 +7,6 @@ personal dotfiles and shell setup
 Run `make` to install the dotfiles and related dependencies.
 Dotfiles typically are symlinked to the local copy
 of this repository, which makes it easy to compare/exchange upstream and local changes.
-Note that conflicting local dotfiles are replaced with the symlink version without
-confirmation.
 
 ## Caveats
 

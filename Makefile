@@ -8,8 +8,8 @@ install: zsh vim tmux git psqlrc
 zsh: bat exa fd delta $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
 	mkdir -p $(ZSH_COMPLETIONS)
 	mkdir -p $(ZSH_THEMES)
-	ln -sf $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
-	ln -sf $(DOTFILES)/.zshrc $${HOME}/.zshrc
+	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
+	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
 vim-python3:
 	vim --version | grep "+python3"
@@ -39,17 +39,17 @@ vim-highlight:
 	install/clone-or-pull.sh https://github.com/burrscurr/vim-pgpass.git $(VIM_PLUGIN_DIR)/vim-pgpass
 
 vim: fzf vim-general vim-highlight vim-py-formatting vim-rs-formatting
-	ln -sf $(DOTFILES)/.vimrc $${HOME}/.vimrc
+	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
-	ln -sf $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
+	install/ln-safe.sh $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
 
 git:
-	ln -sf $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
-	ln -sf $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
+	install/ln-safe.sh $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
+	install/ln-safe.sh $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
 
 psqlrc:
-	ln -sf $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
+	install/ln-safe.sh $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
 
 fzf:
 	install/clone-or-pull.sh https://github.com/junegunn/fzf.git ~/.fzf --depth=1
