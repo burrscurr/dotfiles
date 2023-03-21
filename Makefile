@@ -63,10 +63,10 @@ rust-toolchain:
 
 # Various rust command line utilities
 bat: rust-toolchain
-	cargo install --locked bat
+	bat --version || ./install-rust-cli-tool.sh bat bat bat
 exa: rust-toolchain
-	cargo install exa
+	exa --version || ./install-rust-cli-tool.sh exa exa exa
 fd: rust-toolchain
-	cargo install fd-find
+	fd --version || ./install-rust-cli-tool.sh fd-find fd fd-find
 delta: rust-toolchain
-	cargo install git-delta
+	delta --version || ./install-rust-cli-tool.sh git-delta git-delta git-delta
