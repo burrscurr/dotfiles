@@ -13,9 +13,10 @@ set shiftwidth=4
 set expandtab
 set autowrite
 
-" Use no line numbers by default
+" Line numbers are disabled by default.
 set nonumber
-highlight LineNr ctermfg=grey ctermbg=black
+set nocursorline
+highlight LineNr ctermfg=DarkGrey ctermbg=black
 
 " Jump to search result and highlight results.
 set incsearch
