@@ -22,7 +22,7 @@ black: vim-python3
 	install/clone-or-pull.sh https://github.com/psf/black $(VIM_PLUGIN_DIR)/black
 flake8:
 	install/clone-or-pull.sh https://github.com/nvie/vim-flake8 $(VIM_PLUGIN_DIR)/vim-flake8
-	flake8 --version || python3 -m pip install --user flake8
+	flake8 --version > /dev/null || python3 -m pip install --user flake8
 isort: vim-python3
 	install/clone-or-pull.sh https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
 
