@@ -8,6 +8,12 @@ Run `make` to install the dotfiles and related dependencies.
 Dotfiles typically are symlinked to the local copy
 of this repository, which makes it easy to compare/exchange upstream and local changes.
 
+On Debian systems, relevant prequisites can be installed with `apt`:
+
+```
+sudo apt install -y build-essential python3-pip zsh git make tmux
+```
+
 ## Caveats
 
 ### zsh
