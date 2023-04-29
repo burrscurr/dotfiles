@@ -47,6 +47,10 @@ alias tree="exa -l --tree --git-ignore"
 
 alias cat="bat --theme=base16"
 
+# On Ubuntu, fd installs as binary fdfind to avoid conflicts with an existing utility named fd.
+# For consistency, this is aliased nonetheless to fd.
+alias fd="fdfind"
+
 alias ga="git add"
 alias gs="git status"
 alias gc="git commit"
