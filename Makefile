@@ -6,7 +6,6 @@ VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
 install: zsh vim tmux git psqlrc
 
 zsh: bat exa fd delta $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
-	mkdir -p $(ZSH_COMPLETIONS)
 	mkdir -p $(ZSH_THEMES)
 	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
@@ -59,8 +58,10 @@ rust-toolchain:
 	cargo -V > /dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 	cargo -V > /dev/null || . $${HOME}/.cargo/env
 $(ZSH_COMPLETIONS)/_rustup: rust-toolchain
+	mkdir -p $(ZSH_COMPLETIONS)
 	rustup completions zsh rustup > $(ZSH_COMPLETIONS)/_rustup
 $(ZSH_COMPLETIONS)/_cargo: rust-toolchain
+	mkdir -p $(ZSH_COMPLETIONS)
 	rustup completions zsh cargo > $(ZSH_COMPLETIONS)/_cargo
 
 # Various rust command line utilities
