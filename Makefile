@@ -36,6 +36,7 @@ vim-highlight:
 	install/clone-or-pull.sh https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
 	install/clone-or-pull.sh https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
 	install/clone-or-pull.sh https://github.com/burrscurr/vim-pgpass.git $(VIM_PLUGIN_DIR)/vim-pgpass
+	install/clone-or-pull.sh https://github.com/lervag/vimtex $(VIM_PLUGIN_DIR)/vimtex
 
 vim: fzf vim-general vim-highlight vim-py-formatting vim-rs-formatting
 	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
