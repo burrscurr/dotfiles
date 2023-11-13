@@ -21,6 +21,7 @@ highlight LineNr ctermfg=DarkGrey ctermbg=black
 " Jump to search result and highlight results.
 set incsearch
 set hlsearch
+highlight Search cterm=NONE ctermbg=Yellow ctermfg=black
 
 " Smooth scrolling from https://github.com/terryma/vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 4, 2)<CR>
