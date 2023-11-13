@@ -36,6 +36,10 @@ set fileencoding=utf-8  "write file to disk as utf-8
 " Improve visibility of hard tabs, non-breaking spaces and trailing spaces
 set list listchars=tab:→·,nbsp:␣,trail:·
 
+" Don't make spelling issues too annoying
+highlight SpellBad cterm=underline ctermfg=red ctermbg=NONE
+highlight SpellCap cterm=underline
+
 autocmd Filetype gitcommit setlocal tw=70
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
@@ -48,7 +52,7 @@ autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype bib setlocal ts=2 sw=2 sts=2 expandtab
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 expandtab tw=80
 let g:tex_flavor = 'latex'
-autocmd Filetype tex setlocal ts=2 sw=2 sts=2 expandtab tw=80
+autocmd Filetype tex setlocal ts=2 sw=2 sts=2 expandtab tw=80 spell spelllang=de_de
 autocmd Filetype conf setlocal ts=2 sts=2 sw=2 expandtab
 
 " pgsql.vim
