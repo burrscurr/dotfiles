@@ -5,7 +5,7 @@ NVIM_CONFIG_DIR=~/.config/nvim
 
 install: zsh nvim tmux git psqlrc
 
-zsh: bat exa fd delta $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
+zsh: bat exa fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
 	mkdir -p $(ZSH_THEMES)
 	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
@@ -23,7 +23,7 @@ vim:
 tmux:
 	install/ln-safe.sh $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
 
-git:
+git: delta
 	install/ln-safe.sh $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
 	install/ln-safe.sh $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
 
