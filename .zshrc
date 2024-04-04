@@ -39,18 +39,18 @@ export FZF_CTRL_R_OPTS='--no-sort --exact'
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export PATH="$HOME/.fzf/bin:$PATH"
 
-alias ls="exa"
+alias ls="exa"  # use exa instead of ls for better output (colors) and git integration
 alias ll="exa -l"
 alias la="exa -al"
 alias tree="exa -l --tree --git-ignore"
 
-alias cat="bat --theme=base16"
+alias cat="bat --theme=base16"  # use bat instead of cat for better output (highlighting, color, ...)
 
 # On Ubuntu, fd installs as binary fdfind to avoid conflicts with an existing utility named fd.
 # For consistency, this is aliased nonetheless to fd.
 alias fd="fdfind"
 
-alias ga="git add"
+alias ga="git add"  # various convenience shortcuts for common git commands
 alias gs="git status"
 alias gc="git commit"
 alias gca="git commit --amend"
