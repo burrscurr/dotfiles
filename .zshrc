@@ -36,6 +36,7 @@ export FZF_DEFAULT_COMMAND='fd --hidden --exclude .git'
 # Use Ctrl+T runs FZF, Ctrl+R for history search
 source "$HOME/.fzf/shell/key-bindings.zsh"
 export FZF_CTRL_R_OPTS='--no-sort --exact'
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export PATH="$HOME/.fzf/bin:$PATH"
 
 alias ls="exa"
