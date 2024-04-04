@@ -47,9 +47,10 @@ alias tree="exa -l --tree --git-ignore"
 
 alias cat="bat --theme=base16"  # use bat instead of cat for better output (highlighting, color, ...)
 
-# On Ubuntu, fd installs as binary fdfind to avoid conflicts with an existing utility named fd.
-# For consistency, this is aliased nonetheless to fd.
-alias fd="fdfind"
+# On Ubuntu, some CLI tools have different names to avoid name conflicts with existing utilities.
+# Uncomment those lines if the package versions are used.
+# alias fd="fdfind"
+# alias bat="batcat"
 
 alias ga="git add"  # various convenience shortcuts for common git commands
 alias gs="git status"
@@ -60,3 +61,6 @@ alias gr="git rebase"
 
 alias -g ...="../.."
 alias -g ....="../../.."
+
+# Cargo installs command line tools into ~/.cargo/bin
+export PATH="$HOME/.cargo/bin:$PATH"

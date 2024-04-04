@@ -46,7 +46,7 @@ $(ZSH_COMPLETIONS)/_cargo: rust-toolchain
 bat: rust-toolchain
 	bat --version > /dev/null || install/rust-cli-tool.sh bat bat bat
 exa: rust-toolchain
-	exa --version > /dev/null || install/rust-cli-tool.sh exa exa exa
+	exa --version > /dev/null || cargo install exa
 fd: rust-toolchain
 	fd --version > /dev/null || install/rust-cli-tool.sh fd-find fd fd-find
 delta: rust-toolchain
