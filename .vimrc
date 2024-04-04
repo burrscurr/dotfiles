@@ -23,18 +23,12 @@ set incsearch
 set hlsearch
 highlight Search cterm=NONE ctermbg=Yellow ctermfg=black
 
-" Smooth scrolling from https://github.com/terryma/vim-smooth-scroll
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 4, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 4, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
-
 " unicode options
 set encoding=utf-8      "display file as utf-8 in terminal
 set fileencoding=utf-8  "write file to disk as utf-8
 
 " Improve visibility of hard tabs, non-breaking spaces and trailing spaces
-set list listchars=tab:→·,nbsp:␣,trail:·
+set list listchars=tab:→,nbsp:␣,trail:·
 
 " Don't make spelling issues too annoying
 highlight SpellBad cterm=underline ctermfg=red ctermbg=NONE

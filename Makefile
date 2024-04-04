@@ -1,44 +1,23 @@
 DOTFILES=$(shell pwd)
 ZSH_COMPLETIONS=~/.zsh/completions
 ZSH_THEMES=~/.zsh/themes
-VIM_PLUGIN_DIR=~/.vim/pack/plugins/start
+NVIM_CONFIG_DIR=~/.config/nvim
 
-install: zsh vim tmux git psqlrc
+install: zsh nvim tmux git psqlrc
 
 zsh: bat exa fd delta $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
 	mkdir -p $(ZSH_THEMES)
 	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
-vim-python3:
-	vim --version | grep "+python3"
+nvim-py-formatting:
+	pip install ruff-lsp
 
-vim-rs-formatting: rust-toolchain
-	install/clone-or-pull.sh https://github.com/rust-lang/rust.vim $(VIM_PLUGIN_DIR)/rust.vim
+nvim: nvim-py-formatting
+	mkdir -p $(NVIM_CONFIG_DIR)
+	install/ln-safe.sh $(DOTFILES)/init.lua $(NVIM_CONFIG_DIR)/init.lua
 
-vim-py-formatting: black flake8 isort
-black: vim-python3
-	install/clone-or-pull.sh https://github.com/psf/black $(VIM_PLUGIN_DIR)/black
-flake8:
-	install/clone-or-pull.sh https://github.com/nvie/vim-flake8 $(VIM_PLUGIN_DIR)/vim-flake8
-	flake8 --version > /dev/null || python3 -m pip install --user flake8
-isort: vim-python3
-	install/clone-or-pull.sh https://github.com/davidszotten/isort-vim-2 $(VIM_PLUGIN_DIR)/isort-vim-2
-
-vim-general:
-	install/clone-or-pull.sh https://github.com/itchyny/lightline.vim $(VIM_PLUGIN_DIR)/lightline
-	install/clone-or-pull.sh https://github.com/ervandew/supertab.git $(VIM_PLUGIN_DIR)/supertab --depth=1
-	install/clone-or-pull.sh https://github.com/terryma/vim-smooth-scroll $(VIM_PLUGIN_DIR)/vim-smooth-scroll
-vim-highlight:
-	install/clone-or-pull.sh https://github.com/vim-python/python-syntax $(VIM_PLUGIN_DIR)/python-syntax
-	install/clone-or-pull.sh https://github.com/moon-musick/vim-logrotate $(VIM_PLUGIN_DIR)/vim-logrotate
-	install/clone-or-pull.sh https://github.com/uiiaoo/java-syntax.vim $(VIM_PLUGIN_DIR)/java-syntax
-	install/clone-or-pull.sh https://github.com/projectfluent/fluent.vim $(VIM_PLUGIN_DIR)/fluent.vim
-	install/clone-or-pull.sh https://github.com/lifepillar/pgsql.vim.git $(VIM_PLUGIN_DIR)/pgsql
-	install/clone-or-pull.sh https://github.com/burrscurr/vim-pgpass.git $(VIM_PLUGIN_DIR)/vim-pgpass
-	install/clone-or-pull.sh https://github.com/lervag/vimtex $(VIM_PLUGIN_DIR)/vimtex
-
-vim: fzf vim-general vim-highlight vim-py-formatting vim-rs-formatting
+vim:
 	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
 
 tmux:
@@ -50,10 +29,6 @@ git:
 
 psqlrc:
 	install/ln-safe.sh $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
-
-fzf:
-	install/clone-or-pull.sh https://github.com/junegunn/fzf.git ~/.fzf --depth=1
-	~/.fzf/install --no-completion --no-update-rc --key-bindings --bin
 
 rust-toolchain:
 	cargo -V > /dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;

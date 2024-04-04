@@ -11,8 +11,6 @@ unsetopt BEEP
 # Agnoster theme
 source $HOME/.zsh/themes/agnoster.zsh
 
-export TERM=xterm-256color
-
 HISTFILE=~/.zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -30,8 +28,8 @@ bindkey "^[[B" history-search-forward
 LANG=en_US.UTF-8
 LC_MESSAGES=en_US.UTF-8
 
-# Use vim as editor.
-export VISUAL=vim
+# Use nvim as editor.
+export VISUAL=nvim
 
 # fzf settings
 export FZF_DEFAULT_COMMAND='fd --hidden --exclude .git'
