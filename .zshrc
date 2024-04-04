@@ -5,7 +5,7 @@ compinit
 # Try to complete matches by prefix, then case-insensitive matches, then substring match.
 zstyle ':completion:*' matcher-list 'r:|=*' 'm:{a-zA-Z}={A-Za-z}' 'l:|=* r:|=*'
 
-# Why does this shit even exist?
+# Why does this even exist?
 unsetopt BEEP
 
 # Agnoster theme
