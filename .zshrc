@@ -39,6 +39,7 @@ export FZF_CTRL_R_OPTS='--no-sort --exact'
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export PATH="$HOME/.fzf/bin:$PATH"
 
+alias v="$VISUAL"  # open editor (similar to 'v' when using less)
 alias ls="exa"  # use exa instead of ls for better output (colors) and git integration
 alias ll="exa -l"
 alias la="exa -al"
