@@ -30,6 +30,8 @@ git: delta
 psqlrc:
 	install/ln-safe.sh $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
 
+clitools-opt: tldr
+
 rust-toolchain:
 	cargo -V > /dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
 	cargo -V > /dev/null || . $${HOME}/.cargo/env
@@ -49,3 +51,6 @@ fd: rust-toolchain
 	fd --version > /dev/null || install/rust-cli-tool.sh fd-find fd fd-find
 delta: rust-toolchain
 	delta --version > /dev/null || install/rust-cli-tool.sh git-delta git-delta git-delta
+
+tldr: rust-toolchain
+	tldr --version > /dev/null || cargo install tealdeer
