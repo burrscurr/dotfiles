@@ -26,7 +26,7 @@ bindkey "^[[B" history-search-forward
 
 # language settings
 LANG=en_US.UTF-8
-LC_MESSAGES=en_US.UTF-8
+LC_ALL=en_US.UTF-8
 
 # Use nvim as editor.
 export VISUAL=nvim
