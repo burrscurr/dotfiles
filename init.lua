@@ -130,6 +130,10 @@ local on_attach = function(client, bufnr)
                 -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
                 -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
                 vim.lsp.buf.format({ async = false })
+                vim.lsp.buf.code_action({
+                    context = { only = { "source.organizeImports" } },
+                    apply = true,
+                })
             end,
         })
     end
@@ -158,21 +162,7 @@ end
 -- Taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 -- 
 require('lspconfig').ruff_lsp.setup {
-    on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-        -- Also sort imports when buffer is written and other formatting happens
-        -- (Taken from https://github.com/astral-sh/ruff-lsp/issues/95#issuecomment-1510021409)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = buffer,
-            callback = function()
-                vim.lsp.buf.code_action({
-                    context = { only = { "source.organizeImports" } },
-                    apply = true,
-                })
-                vim.wait(100)
-            end,
-        })
-    end,
+    on_attach = on_attach,
     init_options = {
         settings = {
             -- Any extra CLI arguments for `ruff` go here.
