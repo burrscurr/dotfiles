@@ -6,6 +6,7 @@ vim.opt.expandtab = true  -- Replace tab with spaces
 vim.opt.fileencoding = "utf-8"
 
 -- Improve visibility of hard tabs, non-breaking spaces and trailing spaces
+vim.opt.list = true
 vim.opt.listchars = "tab:→·,nbsp:␣,trail:·"
 
 vim.opt.termguicolors = true  -- enables RGB colors
