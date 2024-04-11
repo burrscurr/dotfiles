@@ -12,6 +12,7 @@ zsh: bat exa fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
 
 nvim-py-formatting:
 	pip install ruff-lsp
+	pip install pynvim
 
 nvim: nvim-py-formatting
 	mkdir -p $(NVIM_CONFIG_DIR)
