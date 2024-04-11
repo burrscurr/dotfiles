@@ -1,1 +1,4 @@
+-- To avoid accidental data mishaps, autocommit is disabled. To avoid writing manual "ROLLBACK;"
+-- after every typo, this is done automatically.
 \set AUTOCOMMIT off
+\set ON_ERROR_ROLLBACK on
