@@ -1,8 +1,7 @@
-
--- By default, use spaces instead of tabs
-vim.opt.expandtab = true
 -- One tab is represented as 4 spaces in editor
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 0  -- increase/decrease indent by the value defined in tabstop
+vim.opt.expandtab = true  -- Replace tab with spaces
 
 vim.opt.fileencoding = "utf-8"
 
