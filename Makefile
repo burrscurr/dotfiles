@@ -30,7 +30,7 @@ git: delta
 psqlrc:
 	install/ln-safe.sh $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
 
-clitools-opt: tldr
+clitools-opt: tldr rg httpie
 
 rust-toolchain:
 	cargo -V > /dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
@@ -54,3 +54,7 @@ delta: rust-toolchain
 
 tldr: rust-toolchain
 	tldr --version > /dev/null || cargo install tealdeer
+rg: rust-toolchain
+	rg -V > /dev/null || install/rust-cli-tool.sh ripgrep ripgrep ripgrep
+httpie:
+	pip install httpie

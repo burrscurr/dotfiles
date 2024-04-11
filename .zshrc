@@ -63,4 +63,5 @@ alias -g ...="../.."
 alias -g ....="../../.."
 
 # Cargo installs command line tools into ~/.cargo/bin
-export PATH="$HOME/.cargo/bin:$PATH"
+# Pip installs to ~/.local/bin
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
