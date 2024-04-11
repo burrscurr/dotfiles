@@ -21,19 +21,19 @@ vim.cmd("highlight SignColumn ctermbg=black guibg=black")
 
 -- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <space>e
 vim.diagnostic.config({
-	virtual_text = false,
-	signs = true,
-	float = {
-		border = "single",
-		format = function(diagnostic)
-			return string.format(
-				"%s (%s) [%s]",
-				diagnostic.message,
-				diagnostic.source,
-				diagnostic.code or diagnostic.user_data.lsp.code
-			)
-		end,
-	},
+    virtual_text = false,
+    signs = true,
+    float = {
+        border = "single",
+        format = function(diagnostic)
+            return string.format(
+                "%s (%s) [%s]",
+                diagnostic.message,
+                diagnostic.source,
+                diagnostic.code or diagnostic.user_data.lsp.code
+            )
+        end,
+    },
 })
 vim.cmd("highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=DarkGrey")
 vim.api.nvim_set_hl(0, 'NormalFloat', {bg='black'})  -- default background is colorful, making red/yellow text hard to read
@@ -94,12 +94,12 @@ require("lazy").setup({
     { "https://github.com/udalov/kotlin-vim" },
     { "https://github.com/vim-python/python-syntax" },
     { "https://github.com/moon-musick/vim-logrotate" },
-	{ "https://github.com/uiiaoo/java-syntax.vim" },
-	{ "https://github.com/projectfluent/fluent.vim" },
-	{ "https://github.com/lifepillar/pgsql.vim.git" },
-	{ "https://github.com/burrscurr/vim-pgpass.git" },
-	{ "https://github.com/lervag/vimtex" },
-	{ "https://github.com/niklasl/vim-rdf" },
+    { "https://github.com/uiiaoo/java-syntax.vim" },
+    { "https://github.com/projectfluent/fluent.vim" },
+    { "https://github.com/lifepillar/pgsql.vim.git" },
+    { "https://github.com/burrscurr/vim-pgpass.git" },
+    { "https://github.com/lervag/vimtex" },
+    { "https://github.com/niklasl/vim-rdf" },
     { "https://github.com/rust-lang/rust.vim" },
 })
 
