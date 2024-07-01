@@ -107,6 +107,7 @@ require("lazy").setup({
 
 -- Configure fzf integration (probably not required anymore since lazy.nvim manages packages)
 -- vim.opt.rtp:append { '~/.fzf' }
+vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
 
 -- Config inserted from https://github.com/astral-sh/ruff-lsp?tab=readme-ov-file#example-neovim
 -- See: https://github.com/neovim/nvim-lspconfig/tree/54eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
