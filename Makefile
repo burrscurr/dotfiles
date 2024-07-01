@@ -1,7 +1,7 @@
 DOTFILES=$(shell pwd)
 ZSH_COMPLETIONS=~/.zsh/completions
 ZSH_THEMES=~/.zsh/themes
-NVIM_CONFIG_DIR=~/.config/nvim
+XDG_CONFIG_DIR=~/.config
 
 install: zsh nvim tmux git psqlrc
 
@@ -15,8 +15,8 @@ nvim-py-formatting:
 	pip install pynvim
 
 nvim: nvim-py-formatting
-	mkdir -p $(NVIM_CONFIG_DIR)
-	install/ln-safe.sh $(DOTFILES)/init.lua $(NVIM_CONFIG_DIR)/init.lua
+	mkdir -p $(XDG_CONFIG_DIR)/nvim
+	install/ln-safe.sh $(DOTFILES)/init.lua $(XDG_CONFIG_DIR)/nvim/init.lua
 
 vim:
 	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
@@ -55,6 +55,8 @@ delta: rust-toolchain
 
 tldr: rust-toolchain
 	tldr --version > /dev/null || cargo install tealdeer
+	mkdir -p $(XDG_CONFIG_DIR)/tealdeer
+	install/ln-safe.sh $(DOTFILES)/tealdeer/config.toml $(XDG_CONFIG_DIR)/tealdeer/config.toml
 rg: rust-toolchain
 	rg -V > /dev/null || install/rust-cli-tool.sh ripgrep ripgrep ripgrep
 httpie:
