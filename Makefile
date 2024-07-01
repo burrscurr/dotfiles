@@ -3,9 +3,9 @@ ZSH_COMPLETIONS=~/.zsh/completions
 ZSH_THEMES=~/.zsh/themes
 XDG_CONFIG_DIR=~/.config
 
-install: zsh nvim tmux git psqlrc
+install: zsh nvim tmux git psqlrc zsh-cli-tools cli-tools-opt
 
-zsh: bat exa fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
+zsh:
 	mkdir -p $(ZSH_THEMES)
 	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
@@ -31,7 +31,10 @@ git: delta
 psqlrc:
 	install/ln-safe.sh $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
 
-clitools-opt: tldr rg httpie
+# CLI tools that are used in zsh config
+zsh-cli-tools: bat exa fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
+
+cli-tools-opt: tldr rg httpie
 
 rust-toolchain:
 	cargo -V > /dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
