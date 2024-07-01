@@ -20,8 +20,11 @@ vim.opt.foldcolumn = "auto"  -- just display if folds are available
 vim.cmd("highlight FoldColumn ctermbg=black guibg=black")
 vim.opt.signcolumn = "number"  -- integrate into number column
 vim.cmd("highlight SignColumn ctermbg=black guibg=black")
+vim.opt.scrolloff = 8  -- always show at least this number of lines above/below the cursor
 
--- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <space>e
+vim.g.mapleader = " "
+
+-- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <leader>e
 vim.diagnostic.config({
     virtual_text = false,
     signs = true,
@@ -59,7 +62,6 @@ vim.cmd([[
 ]])
 
 -- Setup lazy.nvim (plugin manager-- Setup lazy.nvim (plugin manager))
-vim.g.mapleader = " "
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
