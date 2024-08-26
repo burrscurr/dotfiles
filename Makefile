@@ -17,6 +17,7 @@ nvim-py-formatting:
 nvim: nvim-py-formatting
 	mkdir -p $(XDG_CONFIG_DIR)/nvim
 	install/ln-safe.sh $(DOTFILES)/init.lua $(XDG_CONFIG_DIR)/nvim/init.lua
+	install/package.sh lua5.1 lua
 
 vim:
 	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
