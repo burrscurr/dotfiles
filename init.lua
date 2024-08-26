@@ -12,6 +12,7 @@ vim.opt.list = true
 vim.opt.listchars = "tab:→·,nbsp:␣,trail:·"
 
 vim.opt.termguicolors = true  -- enables RGB colors
+vim.cmd("colorscheme torte")
 vim.cmd("highlight Normal ctermbg=black guibg=black")
 -- Make line numbers less prominent than main content (if activated with :set nu)
 vim.opt.number = true
