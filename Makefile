@@ -11,7 +11,7 @@ zsh:
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
 nvim-py-formatting:
-	pip install ruff-lsp
+	pip install ruff
 	pip install pynvim
 	pip install pyright
 

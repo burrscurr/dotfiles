@@ -161,7 +161,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 end
 
-require('lspconfig').ruff_lsp.setup {
+require('lspconfig').ruff.setup {
     on_attach = on_attach
 }
 require('lspconfig').pyright.setup {
