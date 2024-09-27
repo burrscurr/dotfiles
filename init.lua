@@ -112,14 +112,6 @@ require("lazy").setup({
 -- vim.opt.rtp:append { '~/.fzf' }
 vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
 
--- Config inserted from https://github.com/astral-sh/ruff-lsp?tab=readme-ov-file#example-neovim
--- See: https://github.com/neovim/nvim-lspconfig/tree/54eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -162,17 +154,16 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 end
 
--- `ruff-lsp` configuration
--- Taken from https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
--- 
 require('lspconfig').ruff_lsp.setup {
-    on_attach = on_attach,
-    init_options = {
-        settings = {
-            -- Any extra CLI arguments for `ruff` go here.
-            args = {},
-        }
-    }
+    on_attach = on_attach
+}
+require('lspconfig').pyright.setup {
+    on_attach = on_attach
 }

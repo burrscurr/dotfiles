@@ -13,6 +13,7 @@ zsh:
 nvim-py-formatting:
 	pip install ruff-lsp
 	pip install pynvim
+	pip install pyright
 
 nvim: nvim-py-formatting
 	mkdir -p $(XDG_CONFIG_DIR)/nvim
