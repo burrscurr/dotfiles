@@ -88,7 +88,7 @@ require("lazy").setup({
         config = function()
             require("coverage").setup({
                 lang = {
-                   python = { coverage_command = "poetry run coverage json -q -o -"} 
+                   python = { coverage_command = "python -m coverage json -q -o -"}
                 }
             })
         end,
