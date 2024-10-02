@@ -28,7 +28,7 @@ set encoding=utf-8      "display file as utf-8 in terminal
 set fileencoding=utf-8  "write file to disk as utf-8
 
 " Improve visibility of hard tabs, non-breaking spaces and trailing spaces
-set list listchars=tab:→,nbsp:␣,trail:·
+set list listchars=tab:→·,nbsp:␣,trail:·
 
 " Don't make spelling issues too annoying
 highlight SpellBad cterm=underline ctermfg=red ctermbg=NONE
