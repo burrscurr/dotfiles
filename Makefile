@@ -34,7 +34,7 @@ psqlrc:
 	install/ln-safe.sh $(DOTFILES)/.psqlrc $${HOME}/.psqlrc
 
 # CLI tools that are used in zsh config
-zsh-cli-tools: bat exa fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
+zsh-cli-tools: bat eza fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
 
 cli-tools-opt: tldr rg httpie
 
@@ -51,8 +51,8 @@ $(ZSH_COMPLETIONS)/_cargo: rust-toolchain
 # Various rust command line utilities
 bat: rust-toolchain
 	bat --version > /dev/null || install/rust-cli-tool.sh bat bat bat
-exa: rust-toolchain
-	exa --version > /dev/null || cargo install exa
+eza: rust-toolchain
+	eza --version > /dev/null || cargo install eza
 fd: rust-toolchain
 	fd --version > /dev/null || install/rust-cli-tool.sh fd-find fd fd-find
 delta: rust-toolchain

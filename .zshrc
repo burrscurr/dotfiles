@@ -40,10 +40,10 @@ export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export PATH="$HOME/.fzf/bin:$PATH"
 
 alias v="$VISUAL"  # open editor (similar to 'v' when using less)
-alias ls="exa"  # use exa instead of ls for better output (colors) and git integration
-alias ll="exa -l"
-alias la="exa -al"
-alias tree="exa -l --tree --git-ignore"
+alias ls="eza"  # use eza instead of ls for better output (colors) and git integration
+alias ll="eza -l"
+alias la="eza -al"
+alias tree="eza -l --tree --git-ignore"
 
 alias cat="bat --theme=base16"  # use bat instead of cat for better output (highlighting, color, ...)
 
