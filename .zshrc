@@ -43,7 +43,7 @@ alias v="$VISUAL"  # open editor (similar to 'v' when using less)
 alias ls="eza"  # use eza instead of ls for better output (colors) and git integration
 alias ll="eza -l"
 alias la="eza -al"
-alias tree="eza -l --tree --git-ignore"
+alias tree="eza -l -a --tree"
 
 alias cat="bat --theme=base16"  # use bat instead of cat for better output (highlighting, color, ...)
 
