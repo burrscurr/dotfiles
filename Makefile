@@ -3,22 +3,21 @@ ZSH_COMPLETIONS=~/.zsh/completions
 ZSH_THEMES=~/.zsh/themes
 XDG_CONFIG_DIR=~/.config
 
-install: zsh nvim tmux git psqlrc zsh-cli-tools cli-tools-opt
+base: zsh nvim tmux git psqlrc zsh-cli-tools
+
+full: base cli-tools-opt lsp-servers
 
 zsh:
 	mkdir -p $(ZSH_THEMES)
 	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
-nvim-py-formatting:
-	pip install ruff
-	pip install pynvim
-	pip install pyright
-
-nvim: nvim-py-formatting
-	mkdir -p $(XDG_CONFIG_DIR)/nvim
-	install/ln-safe.sh $(DOTFILES)/init.lua $(XDG_CONFIG_DIR)/nvim/init.lua
+nvim:
+	mkdir -p $(XDG_CONFIG_DIR)/nvim/lua
+	install/ln-safe.sh $(DOTFILES)/nvim/init.lua $(XDG_CONFIG_DIR)/nvim/init.lua
+	install/ln-safe.sh $(DOTFILES)/nvim/lua/lsp.lua $(XDG_CONFIG_DIR)/nvim/lua/lsp.lua
 	install/package.sh lua5.1 lua
+	pip install pynvim  # TODO: find out whether this is actually needed
 
 vim:
 	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
@@ -35,6 +34,12 @@ psqlrc:
 
 # CLI tools that are used in zsh config
 zsh-cli-tools: bat eza fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
+
+lsp-servers: lsp-python
+lsp-python:
+	pip install ruff
+	pip install pyright
+	pip install ty
 
 cli-tools-opt: tldr rg httpie
 
