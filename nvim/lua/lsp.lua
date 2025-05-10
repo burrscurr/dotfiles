@@ -43,4 +43,10 @@ require('lspconfig').ruff.setup({
     end
 end
 })
-require('lspconfig').pyright.setup({})
+
+require('lspconfig').pyright.setup({
+})
+
+require('lspconfig').rust_analyzer.setup({
+})
+vim.g.rustfmt_autosave = 1
