@@ -12,12 +12,12 @@ zsh:
 	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
-nvim:
+nvim: uv
 	mkdir -p $(XDG_CONFIG_DIR)/nvim/lua
 	install/ln-safe.sh $(DOTFILES)/nvim/init.lua $(XDG_CONFIG_DIR)/nvim/init.lua
 	install/ln-safe.sh $(DOTFILES)/nvim/lua/lsp.lua $(XDG_CONFIG_DIR)/nvim/lua/lsp.lua
 	install/package.sh lua5.1 lua
-	pip install pynvim  # TODO: find out whether this is actually needed
+	uv tool install pynvim  # TODO: find out whether this is actually needed
 
 vim:
 	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
@@ -35,13 +35,16 @@ psqlrc:
 # CLI tools that are used in zsh config
 zsh-cli-tools: bat eza fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
 
-lsp-servers: lsp-python
-lsp-python:
-	pip install ruff
-	pip install pyright
-	pip install ty
+uv:
+	curl -LsSf https://astral.sh/uv/install.sh | sh
 
-cli-tools-opt: tldr rg httpie
+lsp-servers: lsp-python
+lsp-python: uv
+	uv tool install ruff
+	uv tool install pyright
+	uv tool install ty
+
+cli-tools-opt: uv tldr rg httpie
 
 rust-toolchain:
 	cargo -V > /dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh;
@@ -69,5 +72,5 @@ tldr: rust-toolchain
 	install/ln-safe.sh $(DOTFILES)/tealdeer/config.toml $(XDG_CONFIG_DIR)/tealdeer/config.toml
 rg: rust-toolchain
 	rg -V > /dev/null || install/rust-cli-tool.sh ripgrep ripgrep ripgrep
-httpie:
-	pip install httpie
+httpie: uv
+	uv tool install httpie
