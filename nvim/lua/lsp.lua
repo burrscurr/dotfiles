@@ -22,7 +22,9 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
-require('lspconfig').ruff.setup({
+vim.lsp.config('ruff', {
+    cmd = { 'ruff', 'server' },
+    filetypes = { 'python' },
     on_attach = function(client, bufnr)
     -- If a language server implements code formatting, automatically apply when writing the file.
     if client.supports_method("textDocument/formatting") then
@@ -43,10 +45,17 @@ require('lspconfig').ruff.setup({
     end
 end
 })
+if vim.fn.executable('ruff') == 1 then
+    vim.lsp.enable('ruff')
+end
 
 require('lspconfig').pyright.setup({
 })
 
-require('lspconfig').rust_analyzer.setup({
+vim.lsp.config('rust_analyzer', {
+  cmd = { 'rust-analyzer' },
 })
+if vim.fn.executable('rust-analyzer') == 1 then
+    vim.lsp.enable('rust_analyzer')
+end
 vim.g.rustfmt_autosave = 1
