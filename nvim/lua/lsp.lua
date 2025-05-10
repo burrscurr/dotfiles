@@ -75,8 +75,30 @@ end
 
 vim.lsp.config('rust_analyzer', {
   cmd = { 'rust-analyzer' },
+  filetypes = { 'rust' },
+  root_markers = { "pyproject.toml", "uv.lock", ".git" },
+  settings = {
+    ["rust-analyzer"] = {
+      procMacro = {
+        ignored = {
+            leptos_macro = {
+                "server",
+            },
+        },
+      },
+    },
+  },
 })
 if vim.fn.executable('rust-analyzer') == 1 then
     vim.lsp.enable('rust_analyzer')
 end
 vim.g.rustfmt_autosave = 1
+
+vim.lsp.config("marksman", {
+  cmd = { "marksman", "server" },
+  filetypes = { "markdown" },
+  root_markers = { ".marksman.toml", ".git" }
+})
+if vim.fn.executable("marksman") == 1 then
+    vim.lsp.enable("marksman")
+end
