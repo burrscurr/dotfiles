@@ -24,6 +24,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 vim.lsp.config('ruff', {
     cmd = { 'ruff', 'server' },
+    root_markers = { "pyproject.toml", "uv.lock", ".git" },
     filetypes = { 'python' },
     on_attach = function(client, bufnr)
     -- If a language server implements code formatting, automatically apply when writing the file.
