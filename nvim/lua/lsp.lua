@@ -69,6 +69,7 @@ end
 vim.lsp.config('ty', {
     cmd = { 'ty', 'server' },
     filetypes = { 'python' },
+    root_markers = { "pyproject.toml", "uv.lock", ".git" },
 })
 if vim.fn.executable('ty') == 1 then
     vim.lsp.enable('ty')
