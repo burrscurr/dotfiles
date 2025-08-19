@@ -22,22 +22,12 @@ vim.g.mapleader = " "
 
 -- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <leader>e
 vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
     float = {
-        border = "single",
-        format = function(diagnostic)
-            return string.format(
-                "%s (%s) [%s]",
-                diagnostic.message,
-                diagnostic.source,
-                diagnostic.code or diagnostic.user_data.lsp.code
-            )
-        end,
+        border = "rounded",
+        focusable = false,
     },
 })
 vim.cmd("highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=DarkGrey")
-vim.api.nvim_set_hl(0, 'NormalFloat', {bg='black'})  -- default background is colorful, making red/yellow text hard to read
 
 vim.cmd([[
     autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
