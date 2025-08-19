@@ -12,15 +12,10 @@ vim.opt.list = true
 vim.opt.listchars = "tab:→·,nbsp:␣,trail:·"
 
 vim.opt.termguicolors = true  -- enables RGB colors
-vim.cmd("colorscheme torte")
 vim.cmd("highlight Normal ctermbg=black guibg=black")
--- Make line numbers less prominent than main content (if activated with :set nu)
 vim.opt.number = true
-vim.cmd("highlight LineNr ctermfg=DarkGrey ctermbg=black guibg=black guifg=DarkGrey")
 vim.opt.foldcolumn = "auto"  -- just display if folds are available
-vim.cmd("highlight FoldColumn ctermbg=black guibg=black")
 vim.opt.signcolumn = "number"  -- integrate into number column
-vim.cmd("highlight SignColumn ctermbg=black guibg=black")
 vim.opt.scrolloff = 8  -- always show at least this number of lines above/below the cursor
 
 vim.g.mapleader = " "
@@ -106,10 +101,20 @@ require("lazy").setup({
     { "https://github.com/lervag/vimtex" },
     { "https://github.com/niklasl/vim-rdf" },
     { "https://github.com/rust-lang/rust.vim" },
+
+    -- Colorschemes
+    {
+        "scottmckendry/cyberdream.nvim",
+        lazy = false,
+        priority = 1000,
+    },
+    { "https://github.com/tomasr/molokai" },
 })
 
 -- Configure fzf integration (probably not required anymore since lazy.nvim manages packages)
 -- vim.opt.rtp:append { '~/.fzf' }
 vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
+
+vim.cmd("colorscheme cyberdream")
 
 require("lsp")
