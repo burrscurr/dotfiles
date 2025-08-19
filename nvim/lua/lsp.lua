@@ -27,15 +27,11 @@ vim.lsp.config('ruff', {
     root_markers = { "pyproject.toml", "uv.lock", ".git" },
     filetypes = { 'python' },
     on_attach = function(client, bufnr)
-    -- If a language server implements code formatting, automatically apply when writing the file.
-    if client.supports_method("textDocument/formatting") then
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
             buffer = bufnr,
             callback = function()
-                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
                 vim.lsp.buf.format({ async = false })
                 vim.lsp.buf.code_action({
                     context = { only = { "source.organizeImports" } },
@@ -44,7 +40,6 @@ vim.lsp.config('ruff', {
             end,
         })
     end
-end
 })
 if vim.fn.executable('ruff') == 1 then
     vim.lsp.enable('ruff')
