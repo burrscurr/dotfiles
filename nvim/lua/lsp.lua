@@ -78,20 +78,9 @@ if vim.fn.executable('ty') == 1 then
 end
 
 vim.lsp.config('rust_analyzer', {
-  cmd = { 'rust-analyzer' },
-  filetypes = { 'rust' },
-  root_markers = { "pyproject.toml", "uv.lock", ".git" },
-  settings = {
-    ["rust-analyzer"] = {
-      procMacro = {
-        ignored = {
-            leptos_macro = {
-                "server",
-            },
-        },
-      },
-    },
-  },
+    cmd = { 'rust-analyzer' },
+    filetypes = { 'rust' },
+    root_markers = { "Cargo.lock", ".git" },
 })
 if vim.fn.executable('rust-analyzer') == 1 then
     vim.lsp.enable('rust_analyzer')
