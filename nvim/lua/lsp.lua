@@ -45,22 +45,6 @@ if vim.fn.executable('ruff') == 1 then
     vim.lsp.enable('ruff')
 end
 
-vim.lsp.config('pyright', {
-  cmd = { "pyright-langserver", "--stdio" },
-  root_markers = { "pyproject.toml", "uv.lock", ".git" },
-  filetypes = { 'python' },
-  settings = {
-    python = {
-      analysis = {
-        typeCheckingMode = "off"
-      }
-    }
-  }
-})
-if vim.fn.executable('pyright') == 1 then
-    -- vim.lsp.enable('pyright')
-end
-
 vim.lsp.config('ty', {
     cmd = { 'ty', 'server' },
     filetypes = { 'python' },

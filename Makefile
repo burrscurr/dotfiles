@@ -41,7 +41,6 @@ uv:
 lsp-servers: lsp-python
 lsp-python: uv
 	uv tool install ruff
-	uv tool install pyright
 	uv tool install ty
 
 cli-tools-opt: uv tldr rg httpie
