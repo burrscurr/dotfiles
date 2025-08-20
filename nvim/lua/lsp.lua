@@ -95,3 +95,28 @@ vim.lsp.config("marksman", {
 if vim.fn.executable("marksman") == 1 then
     vim.lsp.enable("marksman")
 end
+
+-- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#cssls
+vim.lsp.config("cssls", {
+    cmd = { "vscode-css-language-server", "--stdio" },
+    filetypes = { "css", "scss", "less" },
+    init_options = {
+        provideFormatter = true
+    },
+    root_markers = { "package.json", ".git" },
+    settings = {
+        css = {
+            validate = true
+        },
+        less = {
+            validate = true
+        },
+        scss = {
+            validate = true
+        }
+    }
+})
+
+if vim.fn.executable("vscode-css-language-server") == 1 then
+    vim.lsp.enable("cssls")
+end
