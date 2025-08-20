@@ -20,6 +20,9 @@ vim.opt.scrolloff = 8  -- always show at least this number of lines above/below 
 
 vim.g.mapleader = " "
 
+-- Always display completions in a popup window, even if there is just one option.
+vim.cmd("set completeopt+=menuone,noselect,popup")
+
 -- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <leader>e
 vim.diagnostic.config({
     float = {

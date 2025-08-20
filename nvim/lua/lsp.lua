@@ -9,18 +9,23 @@ vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = "rounded" }) en
 vim.keymap.set('n', '<C-k>', function() vim.lsp.buf.signature_help({ border = "rounded", focusable = false }) end, bufopts)
 vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
 vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, bufopts)
+vim.keymap.set('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
 vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<space>c', vim.lsp.buf.code_action, bufopts)
 vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 vim.keymap.set('n', '<space>t', vim.lsp.buf.type_definition, bufopts)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+-- Use CTRL-space to trigger LSP completion.
+vim.keymap.set('i', '<c-space>', function()
+    vim.lsp.completion.get()
+end)
+-- When a completion window is open, but no entry was selected, let Tab select (Ctrl+N)
+-- and accept (Ctrl+Y) the first entry (instead of literally inserting a tab character).
+vim.cmd("inoremap <expr> <tab> pumvisible() && get(complete_info(), 'selected', -1) ? '<c-n><c-y>' : '<tab>'")
 
 vim.lsp.config('ruff', {
     cmd = { 'ruff', 'server' },
@@ -56,6 +61,17 @@ vim.lsp.config('ty', {
             },
         },
     },
+    on_attach = function(client, bufnr)
+        vim.lsp.completion.enable(true, client.id, bufnr, {
+            autotrigger = true,
+            convert = function(item)
+                return {
+                    abbr = item.label:gsub('%b()', ''),
+                    kind = vim.lsp.protocol.CompletionItemKind[item.kind] or ""
+                }
+            end,
+        })
+    end,
 })
 if vim.fn.executable('ty') == 1 then
     vim.lsp.enable('ty')
