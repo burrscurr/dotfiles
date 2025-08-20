@@ -58,13 +58,20 @@ vim.lsp.config('pyright', {
   }
 })
 if vim.fn.executable('pyright') == 1 then
-    vim.lsp.enable('pyright')
+    -- vim.lsp.enable('pyright')
 end
 
 vim.lsp.config('ty', {
     cmd = { 'ty', 'server' },
     filetypes = { 'python' },
     root_markers = { "pyproject.toml", "uv.lock", ".git" },
+    settings = {
+        ty = {
+            experimental = {
+                rename = true,
+            },
+        },
+    },
 })
 if vim.fn.executable('ty') == 1 then
     vim.lsp.enable('ty')
