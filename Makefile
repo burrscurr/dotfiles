@@ -65,6 +65,7 @@ fd: rust-toolchain
 	fd --version > /dev/null || install/rust-cli-tool.sh fd-find fd fd-find
 delta: rust-toolchain
 	delta --version > /dev/null || install/rust-cli-tool.sh git-delta git-delta git-delta
+	delta --generate-completion zsh > $(ZSH_COMPLETIONS)/_delta
 
 tldr: rust-toolchain
 	tldr --version > /dev/null || cargo install tealdeer
