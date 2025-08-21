@@ -14,7 +14,6 @@ vim.opt.listchars = "tab:→·,nbsp:␣,trail:·"
 vim.opt.termguicolors = true  -- enables RGB colors
 vim.cmd("highlight Normal ctermbg=black guibg=black")
 vim.opt.number = true
-vim.opt.foldcolumn = "auto"  -- just display if folds are available
 vim.opt.signcolumn = "number"  -- integrate into number column
 vim.opt.scrolloff = 8  -- always show at least this number of lines above/below the cursor
 
@@ -30,7 +29,6 @@ vim.diagnostic.config({
         focusable = false,
     },
 })
-vim.cmd("highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=DarkGrey")
 
 vim.cmd([[
     autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
@@ -66,8 +64,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     { "https://github.com/nvim-lua/plenary.nvim", name = "plenary" },
-    { "https://github.com/neovim/nvim-lspconfig"},
     "https://github.com/itchyny/lightline.vim",
+    { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
     {
         "https://github.com/andythigpen/nvim-coverage",
         dependencies = { "plenary" },
@@ -109,5 +107,17 @@ require("lazy").setup({
 vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
 
 vim.cmd("colorscheme cyberdream")
+vim.cmd("highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=DarkGrey")
+
+-- Try to set up treesitter whenever a buffer is opened
+vim.api.nvim_create_autocmd("BufReadPost", {
+    callback = function()
+        local ft = vim.bo.filetype
+        pcall(vim.treesitter.start, 0, ft)
+    end,
+})
+vim.opt.foldlevelstart = 99
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 require("lsp")
