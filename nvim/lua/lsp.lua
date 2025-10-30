@@ -16,6 +16,8 @@ end)
 -- and accept (Ctrl+Y) the first entry (instead of literally inserting a tab character).
 vim.cmd("inoremap <expr> <tab> pumvisible() && get(complete_info(), 'selected', -1) ? '<c-n><c-y>' : '<tab>'")
 
+vim.lsp.inlay_hint.enable()
+
 vim.lsp.config('ruff', {
     cmd = { 'ruff', 'server' },
     root_markers = { "pyproject.toml", "uv.lock", ".git" },
@@ -45,8 +47,13 @@ vim.lsp.config('ty', {
     root_markers = { "pyproject.toml", "uv.lock", ".git" },
     settings = {
         ty = {
+            diagnosticMode = 'workspace',
             experimental = {
                 rename = true,
+            },
+            inlayHints = {
+                variableTypes = false,
+                callArgumentNames = false,
             },
         },
     },
