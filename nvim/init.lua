@@ -11,6 +11,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.list = true
 vim.opt.listchars = "tab:→·,nbsp:␣,trail:·"
 
+vim.opt.mouse = a
 vim.opt.termguicolors = true  -- enables RGB colors
 vim.cmd("highlight Normal ctermbg=black guibg=black")
 vim.opt.number = true
