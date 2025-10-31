@@ -1,5 +1,4 @@
 -- Mappings.
--- See `:help vim.lsp.*` for documentation on any of the below functions
 local bufopts = { noremap=true, silent=true, buffer=bufnr }
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -9,9 +8,7 @@ vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } e
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
 
 -- Use CTRL-space to trigger LSP completion.
-vim.keymap.set('i', '<c-space>', function()
-    vim.lsp.completion.get()
-end)
+vim.keymap.set('i', '<c-space>', function() vim.lsp.completion.get() end)
 -- When a completion window is open, but no entry was selected, let Tab select (Ctrl+N)
 -- and accept (Ctrl+Y) the first entry (instead of literally inserting a tab character).
 vim.cmd("inoremap <expr> <tab> pumvisible() && get(complete_info(), 'selected', -1) ? '<c-n><c-y>' : '<tab>'")

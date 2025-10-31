@@ -20,17 +20,6 @@ vim.opt.scrolloff = 8  -- always show at least this number of lines above/below 
 
 vim.g.mapleader = " "
 
--- Always display completions in a popup window, even if there is just one option.
-vim.cmd("set completeopt+=menuone,noselect,popup")
-
--- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <leader>e
-vim.diagnostic.config({
-    float = {
-        border = "rounded",
-        focusable = false,
-    },
-})
-
 vim.cmd([[
     autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
     autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
@@ -68,19 +57,17 @@ vim.pack.add({
     -- Colorschemes
     "https://github.com/scottmckendry/cyberdream.nvim",
     "https://github.com/tomasr/molokai",
-
-    -- :CoverageShow
-    "https://github.com/nvim-lua/plenary.nvim",
-    "https://github.com/andythigpen/nvim-coverage",
 })
 
--- Configure fzf integration
-vim.opt.rtp:append { '~/.fzf' }
-vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
--- :CoverageShow
-require('coverage').setup({})
-
 vim.cmd("colorscheme cyberdream")
+
+-- Always display completions in a popup window, even if there is just one option.
+vim.cmd("set completeopt+=menuone,noselect,popup")
+
+-- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <leader>e
+vim.diagnostic.config({
+    float = { border = "rounded", focusable = false },
+})
 vim.cmd("highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=DarkGrey")
 
 -- Try to set up treesitter whenever a buffer is opened
@@ -93,5 +80,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- :CoverageShow etc.
+vim.pack.add({
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/andythigpen/nvim-coverage",
+})
+require('coverage').setup()
+
+-- File picker using fzf
+vim.opt.rtp:append { '~/.fzf' }
+vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
 
 require("lsp")
