@@ -7,12 +7,12 @@ base: zsh nvim tmux git psqlrc zsh-cli-tools
 
 full: base cli-tools-opt lsp-servers
 
-zsh:
+zsh: fzf
 	mkdir -p $(ZSH_THEMES)
 	install/ln-safe.sh $(DOTFILES)/agnoster.zsh $(ZSH_THEMES)/agnoster.zsh
 	install/ln-safe.sh $(DOTFILES)/.zshrc $${HOME}/.zshrc
 
-nvim: uv
+nvim: fzf uv
 	mkdir -p $(XDG_CONFIG_DIR)/nvim/lua
 	install/ln-safe.sh $(DOTFILES)/nvim/init.lua $(XDG_CONFIG_DIR)/nvim/init.lua
 	install/ln-safe.sh $(DOTFILES)/nvim/lua/lsp.lua $(XDG_CONFIG_DIR)/nvim/lua/lsp.lua
@@ -26,6 +26,7 @@ tmux:
 	install/ln-safe.sh $(DOTFILES)/.tmux.conf $${HOME}/.tmux.conf
 
 git: delta
+	git --version > /dev/null || install/package.sh git git
 	install/ln-safe.sh $(DOTFILES)/.gitconfig $${HOME}/.gitconfig
 	install/ln-safe.sh $(DOTFILES)/.gitignore_global $${HOME}/.gitignore_global
 
@@ -34,6 +35,10 @@ psqlrc:
 
 # CLI tools that are used in zsh config
 zsh-cli-tools: bat eza fd $(ZSH_COMPLETIONS)/_rustup $(ZSH_COMPLETIONS)/_cargo
+
+fzf: git
+	test -d ~/.fzf || git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	~/.fzf/install --no-completion --no-update-rc --key-bindings --bin
 
 uv:
 	curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -64,7 +69,6 @@ fd: rust-toolchain
 	fd --version > /dev/null || install/rust-cli-tool.sh fd-find fd fd-find
 delta: rust-toolchain
 	delta --version > /dev/null || install/rust-cli-tool.sh git-delta git-delta git-delta
-	delta --generate-completion zsh > $(ZSH_COMPLETIONS)/_delta
 
 tldr: rust-toolchain
 	tldr --version > /dev/null || cargo install tealdeer

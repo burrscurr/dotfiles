@@ -10,7 +10,7 @@ On Debian systems, most relevant prequisites can be installed with `apt`:
 sudo apt install -y build-essential python3-pip zsh git make tmux
 ```
 
-Additionally, `neovim>=0.11` is required, see [docs][nvim-install]
+Additionally, `neovim>=0.12` is required, see [docs][nvim-install]
 for install options.
 
 ## Installation

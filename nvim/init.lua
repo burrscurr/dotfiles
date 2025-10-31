@@ -49,63 +49,36 @@ vim.cmd([[
     autocmd FileType help wincmd L
 ]])
 
--- Setup lazy.nvim (plugin manager-- Setup lazy.nvim (plugin manager))
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable",
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup({
-    { "https://github.com/nvim-lua/plenary.nvim", name = "plenary" },
+vim.pack.add({
     "https://github.com/itchyny/lightline.vim",
-    { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
-    {
-        "https://github.com/andythigpen/nvim-coverage",
-        dependencies = { "plenary" },
-        cmd = { "CoverageShow" },
-        lazy = false,
-        config = function()
-            require("coverage").setup({
-                lang = {
-                   python = { coverage_command = "python -m coverage json -q -o -"}
-                }
-            })
-        end,
-    },
-    { "https://github.com/junegunn/fzf", dir = "~/.fzf", build = "./install --no-completion --no-update-rc --key-bindings --bin" },
+    "https://github.com/nvim-treesitter/nvim-treesitter",
 
     -- Syntax highlighting for various languages
-    { "https://github.com/udalov/kotlin-vim" },
-    { "https://github.com/vim-python/python-syntax" },
-    { "https://github.com/moon-musick/vim-logrotate" },
-    { "https://github.com/uiiaoo/java-syntax.vim" },
-    { "https://github.com/projectfluent/fluent.vim" },
-    { "https://github.com/lifepillar/pgsql.vim.git" },
-    { "https://github.com/burrscurr/vim-pgpass.git" },
-    { "https://github.com/lervag/vimtex" },
-    { "https://github.com/niklasl/vim-rdf" },
-    { "https://github.com/rust-lang/rust.vim" },
+    "https://github.com/udalov/kotlin-vim",
+    "https://github.com/vim-python/python-syntax",
+    "https://github.com/moon-musick/vim-logrotate",
+    "https://github.com/uiiaoo/java-syntax.vim",
+    "https://github.com/projectfluent/fluent.vim",
+    "https://github.com/lifepillar/pgsql.vim.git",
+    "https://github.com/burrscurr/vim-pgpass.git",
+    "https://github.com/lervag/vimtex",
+    "https://github.com/niklasl/vim-rdf",
+    "https://github.com/rust-lang/rust.vim",
 
     -- Colorschemes
-    {
-        "scottmckendry/cyberdream.nvim",
-        lazy = false,
-        priority = 1000,
-    },
-    { "https://github.com/tomasr/molokai" },
+    "https://github.com/scottmckendry/cyberdream.nvim",
+    "https://github.com/tomasr/molokai",
+
+    -- :CoverageShow
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/andythigpen/nvim-coverage",
 })
 
--- Configure fzf integration (probably not required anymore since lazy.nvim manages packages)
--- vim.opt.rtp:append { '~/.fzf' }
+-- Configure fzf integration
+vim.opt.rtp:append { '~/.fzf' }
 vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
+-- :CoverageShow
+require('coverage').setup({})
 
 vim.cmd("colorscheme cyberdream")
 vim.cmd("highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=DarkGrey")
