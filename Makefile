@@ -5,7 +5,7 @@ XDG_CONFIG_DIR=~/.config
 
 base: zsh nvim tmux git psqlrc zsh-cli-tools
 
-full: base cli-tools-opt lsp-servers
+full: base cli-tools-opt lsp-servers alacritty
 
 zsh: fzf
 	mkdir -p $(ZSH_THEMES)
@@ -41,12 +41,16 @@ fzf: git
 	~/.fzf/install --no-completion --no-update-rc --key-bindings --bin
 
 uv:
-	curl -LsSf https://astral.sh/uv/install.sh | sh
+	uv --version > /dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh
 
 lsp-servers: lsp-python
 lsp-python: uv
 	uv tool install ruff
 	uv tool install ty
+
+alacritty:
+	mkdir -p $${HOME}/.config/alacritty/
+	install/ln-safe.sh $(DOTFILES)/alacritty.toml $${HOME}/.config/alacritty/alacritty.toml
 
 cli-tools-opt: uv tldr rg httpie
 
