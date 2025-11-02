@@ -64,10 +64,11 @@ vim.cmd("colorscheme cyberdream")
 -- Always display completions in a popup window, even if there is just one option.
 vim.cmd("set completeopt+=menuone,noselect,popup")
 
--- Limit diagnostic errors to the sign column (less distraction while writing). Instead, show via <leader>e
+-- The default overlay has no border, making it difficult to read
 vim.diagnostic.config({
-    float = { border = "rounded", focusable = false },
+    float = { border = "rounded" },
 })
+-- Make warnings a little less prominent to reduce distraction when typing
 vim.cmd("highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=DarkGrey")
 
 -- Try to set up treesitter whenever a buffer is opened
