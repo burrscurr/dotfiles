@@ -1,3 +1,12 @@
+-- Enable a language server if its command is actually available on the local machine.
+-- This allows sharing the config between machines without assuming all configured
+-- language servers are locally available.
+local enable_lsp_if_available = function(lsp_config_name, command_name)
+    if vim.fn.executable(command_name) then
+        vim.lsp.enable(lsp_config_name)
+    end
+end
+
 -- Mappings.
 local bufopts = { noremap=true, silent=true, buffer=bufnr }
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -34,9 +43,7 @@ vim.lsp.config('ruff', {
         })
     end
 })
-if vim.fn.executable('ruff') == 1 then
-    vim.lsp.enable('ruff')
-end
+enable_lsp_if_available('ruff', 'ruff')
 
 vim.lsp.config('ty', {
     cmd = { 'ty', 'server' },
@@ -66,18 +73,14 @@ vim.lsp.config('ty', {
         })
     end,
 })
-if vim.fn.executable('ty') == 1 then
-    vim.lsp.enable('ty')
-end
+enable_lsp_if_available('ty', 'ty')
 
 vim.lsp.config('rust_analyzer', {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
     root_markers = { "Cargo.lock", ".git" },
 })
-if vim.fn.executable('rust-analyzer') == 1 then
-    vim.lsp.enable('rust_analyzer')
-end
+enable_lsp_if_available('rust_analyzer', 'rust-analyzer')
 vim.g.rustfmt_autosave = 1
 
 vim.lsp.config("marksman", {
@@ -85,9 +88,7 @@ vim.lsp.config("marksman", {
   filetypes = { "markdown" },
   root_markers = { ".marksman.toml", ".git" }
 })
-if vim.fn.executable("marksman") == 1 then
-    vim.lsp.enable("marksman")
-end
+enable_lsp_if_available('marksman', 'marksman')
 
 -- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#cssls
 vim.lsp.config("cssls", {
@@ -109,7 +110,4 @@ vim.lsp.config("cssls", {
         }
     }
 })
-
-if vim.fn.executable("vscode-css-language-server") == 1 then
-    vim.lsp.enable("cssls")
-end
+enable_lsp_if_available('cssls', 'vscode-css-language-server')
