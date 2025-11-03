@@ -8,11 +8,12 @@ local enable_lsp_if_available = function(lsp_config_name, command_name)
 end
 
 -- Mappings.
-local bufopts = { noremap=true, silent=true, buffer=bufnr }
+local bufopts = { noremap = true, silent = true, buffer = bufnr }
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
 vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = "rounded" }) end, bufopts)
-vim.keymap.set('n', '<C-k>', function() vim.lsp.buf.signature_help({ border = "rounded", focusable = false }) end, bufopts)
+vim.keymap.set('n', '<C-k>', function() vim.lsp.buf.signature_help({ border = "rounded", focusable = false }) end,
+    bufopts)
 vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
 
@@ -76,3 +77,14 @@ vim.g.rustfmt_autosave = 1
 enable_lsp_if_available('marksman', 'marksman')
 
 enable_lsp_if_available('cssls', 'vscode-css-language-server')
+
+vim.lsp.config('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
+        }
+    }
+})
+enable_lsp_if_available('lua_ls', 'lua-language-server')

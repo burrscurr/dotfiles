@@ -1,7 +1,7 @@
 -- One tab is represented as 4 spaces in editor
 vim.opt.tabstop = 4
-vim.opt.shiftwidth = 0  -- increase/decrease indent by the value defined in tabstop
-vim.opt.expandtab = true  -- Replace tab with spaces
+vim.opt.shiftwidth = 0   -- increase/decrease indent by the value defined in tabstop
+vim.opt.expandtab = true -- Replace tab with spaces
 
 vim.opt.fileencoding = "utf-8"
 vim.opt.undofile = true
@@ -11,12 +11,12 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.list = true
 vim.opt.listchars = "tab:→·,nbsp:␣,trail:·"
 
-vim.opt.mouse = a
-vim.opt.termguicolors = true  -- enables RGB colors
+vim.opt.mouse = 'a'
+vim.opt.termguicolors = true -- enables RGB colors
 vim.cmd("highlight Normal ctermbg=black guibg=black")
 vim.opt.number = true
-vim.opt.signcolumn = "number"  -- integrate into number column
-vim.opt.scrolloff = 8  -- always show at least this number of lines above/below the cursor
+vim.opt.signcolumn = "number" -- integrate into number column
+vim.opt.scrolloff = 8         -- always show at least this number of lines above/below the cursor
 
 vim.g.mapleader = " "
 
@@ -92,6 +92,6 @@ require('coverage').setup()
 
 -- File picker using fzf
 vim.opt.rtp:append { '~/.fzf' }
-vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap=true, silent=true })
+vim.keymap.set('n', '<C-p>', ':FZF<cr>', { noremap = true, silent = true })
 
 require("lsp")
