@@ -24,10 +24,8 @@ vim.cmd("inoremap <expr> <tab> pumvisible() && get(complete_info(), 'selected', 
 
 vim.lsp.inlay_hint.enable()
 
+-- Various LSP configurations.
 vim.lsp.config('ruff', {
-    cmd = { 'ruff', 'server' },
-    root_markers = { "pyproject.toml", "uv.lock", ".git" },
-    filetypes = { 'python' },
     on_attach = function(client, bufnr)
         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -46,9 +44,6 @@ vim.lsp.config('ruff', {
 enable_lsp_if_available('ruff', 'ruff')
 
 vim.lsp.config('ty', {
-    cmd = { 'ty', 'server' },
-    filetypes = { 'python' },
-    root_markers = { "pyproject.toml", "uv.lock", ".git" },
     settings = {
         ty = {
             diagnosticMode = 'workspace',
@@ -75,39 +70,9 @@ vim.lsp.config('ty', {
 })
 enable_lsp_if_available('ty', 'ty')
 
-vim.lsp.config('rust_analyzer', {
-    cmd = { 'rust-analyzer' },
-    filetypes = { 'rust' },
-    root_markers = { "Cargo.lock", ".git" },
-})
 enable_lsp_if_available('rust_analyzer', 'rust-analyzer')
 vim.g.rustfmt_autosave = 1
 
-vim.lsp.config("marksman", {
-  cmd = { "marksman", "server" },
-  filetypes = { "markdown" },
-  root_markers = { ".marksman.toml", ".git" }
-})
 enable_lsp_if_available('marksman', 'marksman')
 
--- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#cssls
-vim.lsp.config("cssls", {
-    cmd = { "vscode-css-language-server", "--stdio" },
-    filetypes = { "css", "scss", "less" },
-    init_options = {
-        provideFormatter = true
-    },
-    root_markers = { "package.json", ".git" },
-    settings = {
-        css = {
-            validate = true
-        },
-        less = {
-            validate = true
-        },
-        scss = {
-            validate = true
-        }
-    }
-})
 enable_lsp_if_available('cssls', 'vscode-css-language-server')

@@ -40,6 +40,7 @@ vim.cmd([[
 
 vim.pack.add({
     "https://github.com/itchyny/lightline.vim",
+    "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/nvim-treesitter/nvim-treesitter",
 
     -- Syntax highlighting for various languages
