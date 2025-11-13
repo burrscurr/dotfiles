@@ -77,6 +77,7 @@ vim.g.rustfmt_autosave = 1
 enable_lsp_if_available('marksman', 'marksman')
 
 enable_lsp_if_available('cssls', 'vscode-css-language-server')
+enable_lsp_if_available('ts_ls', 'typescript-language-server')
 
 vim.lsp.config('lua_ls', {
     settings = {

@@ -6,6 +6,7 @@ vim.opt.expandtab = true -- Replace tab with spaces
 vim.opt.fileencoding = "utf-8"
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.cmd.packadd("nvim.undotree")  -- enables :Undotree
 
 -- Improve visibility of hard tabs, non-breaking spaces and trailing spaces
 vim.opt.list = true
