@@ -17,3 +17,6 @@ blue    = '#6a71f6'
 magenta = '#ed7ef8'
 cyan    = '#8ef9fd'
 white   = '#fefefe'
+
+[mouse]
+hide_when_typing = true
