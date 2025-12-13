@@ -30,6 +30,7 @@ LC_ALL=en_US.UTF-8
 
 # Use nvim as editor.
 export VISUAL=nvim
+export LESS="--mouse"  # enable mouse scrolling of paged output, even when in tmux
 
 # fzf settings
 export FZF_DEFAULT_COMMAND='fd --hidden --exclude .git'
