@@ -16,8 +16,6 @@ nvim: fzf uv
 	mkdir -p $(XDG_CONFIG_DIR)/nvim/lua
 	install/ln-safe.sh $(DOTFILES)/nvim/init.lua $(XDG_CONFIG_DIR)/nvim/init.lua
 	install/ln-safe.sh $(DOTFILES)/nvim/lua/lsp.lua $(XDG_CONFIG_DIR)/nvim/lua/lsp.lua
-	install/package.sh lua5.1 lua
-	uv tool install pynvim  # TODO: find out whether this is actually needed
 
 vim:
 	install/ln-safe.sh $(DOTFILES)/.vimrc $${HOME}/.vimrc
